@@ -1,0 +1,220 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, esint}
+\usepackage{fancyhdr}
+\usepackage{tikz, tikz-3dplot}
+% \usepackage{hyperref}
+\usepackage{enumitem}
+
+% Page setup
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\lhead{Calculus}
+\rhead{\today}
+\cfoot{\thepage}
+
+% Theorem setup
+\newtheorem{theorem}{Theorem}[section]
+
+\begin{document}
+\pagestyle{plain}
+\begin{center}
+  \tableofcontents
+\end{center}
+
+\newpage
+\setcounter{page}{1}
+\pagestyle{fancy}
+
+\section{Limit}
+\subsection{Limit of a function}
+\subsubsection{Definition}
+Let $f$ be a function defined on an open interval containing $a$, except possibly at $a$ itself. 
+Then \[\lim_{x\to a}f(x) = L\] if for every $\varepsilon > 0$, there exists a $\delta > 0$ such that
+\[
+0 < |x - a| < \delta \quad \Rightarrow \quad |f(x) - L| < \varepsilon.
+\]
+\subsubsection{Property}
+Let $\displaystyle\lim_{x \to a} f(x) = L$ and $\displaystyle\lim_{x \to a} g(x) = M$, and let $c$ be a constant. Then the following limit properties hold:
+\begin{enumerate}
+    \item $ 
+        \displaystyle
+        \lim_{x \to a} [f(x) + g(x)] = L + M
+    $    
+    \item $
+        \displaystyle
+        \lim_{x \to a} [f(x) - g(x)] = L - M
+    $
+    
+    \item $
+        \displaystyle
+        \lim_{x \to a} [c \cdot f(x)] = cL
+    $
+    
+    \item $
+        \displaystyle
+        \lim_{x \to a} [f(x) \cdot g(x)] = L \cdot M
+    $
+    
+    \item $
+        \displaystyle
+        \lim_{x \to a} \frac{f(x)}{g(x)} = \frac{L}{M}
+    $, \text{if $M \neq 0$}
+    
+    \item $
+        \displaystyle
+        \lim_{x \to a} [f(x)]^n = L^n \quad \text{for any } n \in \mathbb{N}
+    $
+    
+    \item $
+        \displaystyle
+        \lim_{x \to a} \sqrt[n]{f(x)} = \sqrt[n]{L} \quad \text{if } L \ge 0 \text{ for even } n
+    $
+\end{enumerate}
+\subsubsection{One-sided Limit and Existence of a Limit}
+Let $f(x)$ be a function defined near $x = a$.\\[.5em]
+\noindent
+\textbf{Left-hand limit:}  
+$
+    \displaystyle
+    \lim_{x \to a^-}f(x) = L
+$\\
+if for every $\varepsilon > 0$, there exists a $\delta > 0$ such that
+\[
+    0<a-x<\delta\quad\Rightarrow\quad|f(x)-L|<\varepsilon.
+\]
+\noindent
+\textbf{Right-hand limit:}\\
+$
+    \lim_{x \to a^+} f(x) = L
+$\\
+if for every $\varepsilon > 0$, there exists a $\delta > 0$ such that
+\[
+    0<x-a<\delta\quad\Rightarrow\quad|f(x)-L|<\varepsilon.
+\]
+\textbf{Existence of Limit}\\
+The limit of a function $f(x)$ as $x$ approaches $a$ exists if and only if the left-hand and right-hand limits exist and are equal:
+\[
+    \lim_{x \to a} f(x) \text{ exists } \iff \lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x)
+\]
+\subsubsection{Evaluating Limit}
+\begin{enumerate}
+    \item Substitute directly
+    \item Factoring and simplifying
+    \item Multiply by the conjugate of numerator or denominator
+    \item Use graph/table of a given function
+\end{enumerate}
+\subsubsection{Squeeze Theorem}
+\begin{theorem}[Squeeze Theorem]
+Let $f(x)$, $g(x)$, and $h(x)$ be functions defined on an open interval containing $a$, 
+except possibly at $a$ itself. Suppose that for all $x$ in this interval (with $x \ne a$),
+\[f(x) \le g(x) \le h(x),\]
+and that\[\lim_{x \to a} f(x) = \lim_{x \to a} h(x) = L.\] 
+Then,\[\lim_{x \to a} g(x) = L.\]
+\end{theorem}
+
+\bigskip
+\noindent
+\textbf{For example:}\\
+for all $x \ne 0$,
+\[
+-1 \le \sin\left(\frac{1}{x}\right) \le 1.
+\]
+Multiplying all parts by $x^2 \ge 0$, we get
+\[-x^2 \le x^2 \sin\left(\frac{1}{x}\right) \le x^2.\]
+Since
+\[\lim_{x \to 0} (-x^2) = 0 = \lim_{x \to 0} x^2,\]
+by the \textbf{\textit{Squeeze Theorem}},
+\[\lim_{x \to 0} x^2 \sin\left(\frac{1}{x}\right) = 0.\]
+\subsection{Limit with Infinities}
+\subsubsection{Infinite Limits}
+If $f$ is a function defined at every number in some open inverval containing $a$
+, except possibly at $a$ itself, then
+\begin{itemize}
+    \item $\displaystyle\lim_{x \to a} f(x) = \infty$ 
+        means that $f(x)$ increases without bound as $x$
+        approaches $a$.
+    \item $\displaystyle\lim_{x \to a} f(x) = -\infty$ 
+        means that $f(x)$ increases without bound as $x$
+        approaches $a$.
+    
+\end{itemize}
+\textbf{Limit Theorems}
+\begin{enumerate}
+    \item If $n$ is a positive integer, then
+        \begin{enumerate}
+            \item $
+                \displaystyle 
+                \lim_{x\to0^+}\frac{1}{x^n} = \infty
+            $
+            \item $
+                \displaystyle 
+                \lim_{x\to0^-}\frac{1}{x^n} =
+                \begin{cases}
+                    \infty &\text{if }n\text{ is even}\\
+                    -\infty &\text{if }n\text{ is odd}
+                \end{cases}
+            $
+        \end{enumerate}
+    \item if the $\displaystyle
+        \lim_{x\to a} f(x) =c, c>0, \text{and} \lim_{x\to a} g(x) =0
+        \text{, then}$\\$
+            \displaystyle\lim_{x\to a}\frac{f(x)}{g(x)}=
+        \begin{cases}
+            \infty &\text{if }g(x)\text{ approaches 0 through positive values}\\
+            -\infty &\text{if }g(x)\text{ approaches 0 through negative values}
+        \end{cases}$
+    \item if the $\displaystyle
+        \lim_{x\to a} f(x) =c, c<0, \text{and} \lim_{x\to a} g(x) =0
+        \text{, then}$\\$
+            \displaystyle\lim_{x\to a}\frac{f(x)}{g(x)}=
+        \begin{cases}
+            -\infty &\text{if }g(x)\text{ approaches 0 through positive values}\\
+            \infty &\text{if }g(x)\text{ approaches 0 through negative values}
+        \end{cases}$
+\end{enumerate}
+\subsubsection{Limit at Infinities}
+\textbf{Limit at Infinity $\boldsymbol{(x\to\infty)}$}
+\begin{itemize}
+    \item If $f$ is a function defined at every number in some open inverval $(a,\infty)$,
+        the $\displaystyle\lim_{x\to\infty}f(x)=L$ means that $L$ is the limit of $f(x)$ 
+        as $x$ increases without bound.
+    \item If $f$ is a function defined at every number in some open inverval $(-\infty, a)$,
+        the $\displaystyle\lim_{x\to-\infty}f(x)=L$ means that $L$ is the limit of $f(x)$ 
+        as $x$ decreases without bound.
+\end{itemize}
+\textbf{Limit Theorems}\\
+If $n$ is a positive integer, then
+\begin{enumerate}[label=(\alph*)]
+    \item $
+        \displaystyle 
+        \lim_{x\to\infty}\frac{1}{x^n}=0
+    $
+    \item $
+        \displaystyle 
+        \lim_{x\to-\infty}\frac{1}{x^n}=0
+    $
+\end{enumerate}
+\subsubsection{Vertical and Horizontal Asymptotes}
+\textbf{Vertical Asymptotes}\\
+A function $f(x)$ has a \textbf{vertical asymptote} at $x = a$ if at least one of the following holds:
+\[
+    \lim_{x \to a^-} f(x) = \pm\infty \quad \text{or} \quad \lim_{x \to a^+} f(x) = \pm\infty.
+\]
+\noindent
+This means that $f(x)$ grows without bound as $x$ approaches $a$ from the left or the right.\\[.5em]
+\textbf{Horizontal Asymptotes}\\
+A function $f(x)$ has a \textbf{horizontal asymptote} at $y = L$ if:
+\[
+    \lim_{x \to \infty} f(x) = L \quad \text{or} \quad \lim_{x \to -\infty} f(x) = L.
+\]
+\noindent
+This means that $f(x)$ approaches the constant value $L$ as $x$ tends to positive or negative infinity.
+\subsection{Continuity}
+
+\section{Derivatives}
+
+
+\section{Integrals}
+\end{document}
