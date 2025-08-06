@@ -1,0 +1,404 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, esint, physics}
+\usepackage{fancyhdr}
+\usepackage{tikz, tikz-3dplot}
+% \usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{cancel}
+
+% Page setup
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\lhead{Single Variable Calculus: Limit}
+\cfoot{\thepage}
+
+\begin{document}
+\pagestyle{plain}
+\begin{center}
+  \tableofcontents
+\end{center}
+\newpage
+\setcounter{page}{1}
+\pagestyle{fancy}
+\section{Limit of a Function}
+\subsection{Definition}
+Let $f$ be a function defined on an open interval containing $a$, except possibly at $a$ itself.
+We say that $L$ is the \textbf{limit} of $f(x)$ as $x \to a$, and write
+\[
+    \lim_{x\to a}f(x) = L\] if for every $\varepsilon > 0$, there exists a $\delta > 0$ such that
+\[
+  0 < |x - a| < \delta \quad \Rightarrow \quad |f(x) - L| < \varepsilon.
+\]
+\subsection{Property}
+Let $\displaystyle\lim_{x \to a} f(x) = L$ and $\displaystyle\lim_{x \to a} g(x) = M$, and let $c$ be a constant. Then the following limit properties hold:
+\begin{enumerate}
+    \item $ 
+        \displaystyle
+        \lim_{x \to a} [f(x) + g(x)] = L + M
+    $    
+    \item $
+        \displaystyle
+        \lim_{x \to a} [f(x) - g(x)] = L - M
+    $
+    
+    \item $
+        \displaystyle
+        \lim_{x \to a} [c \cdot f(x)] = cL
+    $
+    
+    \item $
+        \displaystyle
+        \lim_{x \to a} [f(x) \cdot g(x)] = L \cdot M
+    $
+    
+    \item $
+        \displaystyle
+        \lim_{x \to a} \frac{f(x)}{g(x)} = \frac{L}{M}
+    $, \text{if $M \neq 0$}
+    
+    \item $
+        \displaystyle
+        \lim_{x \to a} [f(x)]^n = L^n \quad \text{for any } n \in \mathbb{N}
+    $
+    
+    \item $
+        \displaystyle
+        \lim_{x \to a} \sqrt[n]{f(x)} = \sqrt[n]{L} \quad \text{if } L \ge 0 \text{ for even } n
+    $
+\end{enumerate}
+\subsection{One-sided Limit and Existence of a Limit}
+Let $f(x)$ be a function defined near $x = a$.\\[.5em]
+\textbf{Left-hand limit:}  
+$
+    \displaystyle
+    \lim_{x \to a^-}f(x) = L
+$\\
+if for every $\varepsilon > 0$, there exists a $\delta > 0$ such that
+\[
+    0<a-x<\delta\quad\Rightarrow\quad|f(x)-L|<\varepsilon.
+\]
+\noindent
+\textbf{Right-hand limit:}
+$
+    \displaystyle
+    \lim_{x \to a^+} f(x) = L
+$\\
+if for every $\varepsilon > 0$, there exists a $\delta > 0$ such that
+\[
+    0<x-a<\delta\quad\Rightarrow\quad|f(x)-L|<\varepsilon.
+\]
+\textbf{Existence of Limit}\\
+The limit of a function $f(x)$ as $x$ approaches $a$ exists if and only if the left-hand and right-hand limits exist and are equal:
+\[
+    \lim_{x \to a} f(x) \text{ exists } \iff \lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x)
+\]
+
+\section{Limit at Infinities}
+\subsection{Infinite Limits}
+If $f$ is a function defined at every number in some open inverval containing $a$
+, except possibly at $a$ itself, then
+\begin{itemize}
+    \item $\displaystyle\lim_{x \to a} f(x) = \infty$ 
+        means that $f(x)$ increases without bound as $x$
+        approaches $a$.
+    \item $\displaystyle\lim_{x \to a} f(x) = -\infty$ 
+        means that $f(x)$ increases without bound as $x$
+        approaches $a$.
+    
+\end{itemize}
+\textbf{Limit Laws}
+\begin{enumerate}
+    \item If $n$ is a positive integer, then
+        \begin{enumerate}
+            \item $
+                \displaystyle 
+                \lim_{x\to0^+}\frac{1}{x^n} = \infty
+            $
+            \item $
+                \displaystyle 
+                \lim_{x\to0^-}\frac{1}{x^n} =
+                \begin{cases}
+                    \infty &\text{if }n\text{ is even}\\
+                    -\infty &\text{if }n\text{ is odd}
+                \end{cases}
+            $
+        \end{enumerate}
+    \item if the $
+           \displaystyle
+            \lim_{x\to a} f(x) =c, c>0, \text{and} \lim_{x\to a} g(x) =0
+            \text{, then}
+        $\\
+        $
+            \displaystyle\lim_{x\to a}\frac{f(x)}{g(x)}=
+            \begin{cases}
+                \infty &\text{if }g(x)\text{ approaches 0 through positive values}\\
+                -\infty &\text{if }g(x)\text{ approaches 0 through negative values}
+            \end{cases}
+        $
+    \item if the $
+            \displaystyle
+            \lim_{x\to a} f(x) =c, c<0, \text{and} \lim_{x\to a} g(x) =0
+            \text{, then}
+        $\\
+        $
+            \displaystyle\lim_{x\to a}\frac{f(x)}{g(x)}=
+            \begin{cases}
+                -\infty &\text{if }g(x)\text{ approaches 0 through positive values}\\
+                \infty &\text{if }g(x)\text{ approaches 0 through negative values}
+            \end{cases}
+        $
+\end{enumerate}
+\subsection{Limit as $x\to\infty$}
+\subsubsection*{Limit at Infinity $\boldsymbol{(x\to\infty)}$}
+\begin{itemize}
+    \item If $f$ is a function defined at every number in some open inverval $(a,\infty)$,
+        the $\displaystyle\lim_{x\to\infty}f(x)=L$ means that $L$ is the limit of $f(x)$ 
+        as $x$ increases without bound.
+    \item If $f$ is a function defined at every number in some open inverval $(-\infty, a)$,
+        the $\displaystyle\lim_{x\to-\infty}f(x)=L$ means that $L$ is the limit of $f(x)$ 
+        as $x$ decreases without bound.
+\end{itemize}
+\textbf{Limit Laws}\\
+If $n$ is a positive integer, then
+\begin{enumerate}[label=(\alph*)]
+    \item $
+        \displaystyle 
+        \lim_{x\to\infty}\frac{1}{x^n}=0
+    $
+    \item $
+        \displaystyle 
+        \lim_{x\to-\infty}\frac{1}{x^n}=0
+    $
+\end{enumerate}
+\subsection{Vertical and Horizontal Asymptotes}
+\subsection*{Vertical Asymptotes}
+A function $f(x)$ has a \textbf{vertical asymptote} at $x = a$ if at least one of the following holds:
+\[
+    \lim_{x \to a^-} f(x) = \pm\infty \quad \text{or} \quad \lim_{x \to a^+} f(x) = \pm\infty.
+\]
+This means that $f(x)$ grows without bound as $x$ approaches $a$ from the left or the right.
+\subsubsection*{Horizontal Asymptotes}
+A function $f(x)$ has a \textbf{horizontal asymptote} at $y = L$ if:
+\[
+    \lim_{x \to \infty} f(x) = L \quad \text{or} \quad \lim_{x \to -\infty} f(x) = L.
+\]
+This means that $f(x)$ approaches the constant value $L$ as $x$ tends to positive or negative infinity.
+
+\section{Evaluation Techniques}
+\subsection{Direct Substitution}
+\[
+    \lim_{x\to 2}(3x^2+2)=3(2)^2+2=14
+\]
+\subsection{Factorization}
+\[
+    \lim_{x\to 3}\frac{x^2-9}{x-3}
+\]
+Factorizing:
+\[
+    \frac{x^2-9}{x-3}=\frac{(x+3)\cancel{(x-3)}}{\cancel{x-3}}=x+3
+\]
+Then,
+\[
+    \lim_{x\to 3}\frac{x^2-9}{x-3}=\lim_{x\to 3}(x+3)=6
+\]
+\subsection{Rationalization}
+\[
+    \lim_{x\to 0}\frac{\sqrt{1+x}-1}{x}
+\]
+Multiply by the conjugate of numerator:
+\[
+    \frac{\sqrt{1+x}-1}{x}\cdot\frac{\sqrt{1+x}+1}{\sqrt{1+x}+1}=
+    \frac{1+x-1}{x(\sqrt{1+x}+1)}=\frac{\cancel{x}}{\cancel{x}(\sqrt{1+x}+1)}=
+    \frac{1}{\sqrt{1+x}+1}
+\]
+Then,
+\[
+    \lim_{x\to 0}\frac{\sqrt{1+x}-1}{x}=\lim_{x\to 0}\frac{1}{\sqrt{1+x}+1}=\frac{1}{2}
+\]
+\subsection{Use graph/table of a given function}
+\[
+    \begin{array}{c|cccccc}
+        x & 0.9 & 0.99 & 0.999 & 1.001 & 1.01 & 1.1 \\
+        \hline
+        f(x) & 1.9 & 1.99 & 1.999 & 2.001 & 2.01 & 2.1
+    \end{array},
+    \quad\text{find $\lim_{x\to 1}f(x)$}
+\]
+Solution:
+\[
+    \lim_{x\to 1}f(x)=2
+\]
+\subsection{Squeeze Theorem}
+Let $f(x)$, $g(x)$, and $h(x)$ be functions defined on an open interval containing $a$, 
+except possibly at $a$ itself. Suppose that for all $x$ in this interval (with $x \ne a$),
+\[
+    f(x) \le g(x) \le h(x)
+\]
+and that\[
+    \lim_{x \to a} f(x) = \lim_{x \to a} h(x) = L
+\] 
+Then,\[
+    \lim_{x \to a} g(x) = L
+\]
+\subsubsection*{For example:}
+for all $x \ne 0$,
+\[
+    -1 \le \sin\left(\frac{1}{x}\right) \le 1
+\]
+Multiplying all parts by $x^2 \ge 0$, we get
+\[
+    -x^2 \le x^2 \sin\left(\frac{1}{x}\right) \le x^2
+\]
+Since
+\[
+    \lim_{x \to 0} (-x^2) = 0 = \lim_{x \to 0} x^2
+\]
+by the \textbf{Squeeze Theorem},
+\[
+    \lim_{x \to 0} x^2 \sin\left(\frac{1}{x}\right) = 0
+\]
+\subsection{Small-Angle Approximation}
+When $x\to 0$ in radian,
+\[
+\sin x \approx \tan x \approx x, \quad \cos x \approx 1 - \frac{x^2}{2} \Rightarrow 1 - \cos x \approx \frac{x^2}{2}
+\]
+\subsubsection*{For example:}
+\[
+    \lim_{x \to 0} \frac{1 - \cos x}{x^2}
+\]
+Use the identity:
+\[
+    \cos x = 1-2\sin^2\left(\frac{x}{2}\right)
+\]
+So:
+\[
+    \frac{1 - \cos x}{x^2} = \frac{2\sin^2\left(\frac{x}{2}\right)}{x^2}
+    =\frac{2\left(\sin\left(\frac{x}{2}\right)\right)^2}{x^2}
+\]
+Apply small-angle approximation:
+\[  
+    \frac{2\left(\sin\left(\frac{x}{2}\right)\right)^2}{x^2}
+    \approx \frac{2\left(\frac{x}{2}\right)^2}{x^2}
+    = \frac{2}{x^2}\cdot \frac{x^2}{4}
+    = \frac{2}{\cancel{x^2}} \cdot \frac{\cancel{x^2}}{4}
+    = \frac{1}{2}
+\]
+Thus,
+\[
+    \lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}
+\]
+\subsection{L'Hôpital's Rule}
+Suppose $\displaystyle\lim_{x \to a} f(x) = \lim_{x \to a} g(x) = 0$ or $\pm \infty$, and that
+\begin{itemize}
+    \item $f$ and $g$ are differentiable near $a$,
+    \item $g'(x) \neq 0$ near $a$,
+    \item $\displaystyle \lim_{x \to a} \frac{f'(x)}{g'(x)}$ exists.
+\end{itemize}
+Then,
+\[
+    \lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}.
+\]
+\subsubsection*{For example:}
+\[
+    \lim_{x \to 0} \frac{e^x - 1 - x}{x^2}
+\]
+Apply L'Hôpital's Rule since it's $\displaystyle\frac{0}{0}$:
+\[
+    = \lim_{x \to 0} \frac{e^x - 1}{2x}
+\]
+Still $\displaystyle\frac{0}{0}$, apply L'Hôpital's Rule again:
+\[
+    = \lim_{x \to 0} \frac{e^x}{2} = \frac{1}{2}
+\]
+
+\section{Famous Limits}
+\begin{enumerate}
+    \item $
+        \displaystyle
+        \lim_{x\to 0}\frac{\sin(x)}{x}=1
+    $
+    \item $
+        \displaystyle
+        \lim_{x\to 0}\frac{1-\cos(x)}{x^2}=\frac{1}{2}
+    $
+    \item $
+        \displaystyle
+        \lim_{x\to 0}\frac{e^x-1}{x}=1
+    $
+    \item Euler's Number:\\[10pt]$
+        \displaystyle
+        e=\lim_{x\to\infty}\left(1+\frac{1}{x}\right)^x
+    $
+\end{enumerate}
+
+\section{Continuity of a Function}
+\subsection{Continuous at a Point}
+A function $f$ is said to be continuous at a number $a$
+if the following conditions are met:
+\begin{itemize}
+    \item $f(a)$ exists
+    \item $\displaystyle\lim_{x\to a}f(x)$ exists
+    \item $\displaystyle f(a) = \lim_{x\to a}f(x)$
+\end{itemize}
+\subsection{Continuous Over a Interval}
+A function is continuous over an interval if it is continuous at every point in the interval.\\[.5em]
+\textbf{Theorems on Continuity}
+\begin{enumerate}
+    \item If the function $f$ and $g$ are continuous at $a$, 
+        then the functions $f+g$, $f-g$, $f\cdot g$, and $f/g$, ($g \neq 0$) are also continuous at $a$.
+    \item A polynomial function is continuous everywhere.
+    \item A rational function is continuous everywhere except at points where the denominator is $0$.
+    \item \textbf{Intermediate Value Theorem:}\addcontentsline{toc}{subsubsection}{5.2.1\quad Intermediate Value Theorem}
+        Let $f$ be a function that is continuous on the closed interval $[a, b]$. Suppose $N$ is a number such that:
+        \[
+            f(a) < N < f(b) \quad \text{or} \quad f(b) < N < f(a).
+        \]
+        Then, there exists at least one $c \in (a, b)$ such that:
+        \[
+            f(c) = N.
+        \]
+\end{enumerate}
+\subsection{Types of Discontinuity}
+A function $f(x)$ is said to be \textbf{discontinuous} at a point $x = a$ if the limit $\displaystyle\lim_{x \to a} f(x)$ does not exist or does not equal $f(a)$. Discontinuities can be classified into several types:
+\begin{enumerate}
+  \item \textbf{Removable Discontinuity:}  
+  The limit $\displaystyle\lim_{x \to a} f(x)$ exists and is finite, but either $f(a)$ is not defined, or $\displaystyle f(a) \ne \lim_{x \to a} f(x)$.  
+  \[
+  f(x) = 
+  \begin{cases}
+    \displaystyle\frac{x^2 - 1}{x - 1}, & x \ne 1 \\
+    0, & x = 1
+  \end{cases}
+  \]
+  Here, $\displaystyle\lim_{x \to 1} f(x) = 2$, but $f(1) = 0 \ne 2$.
+
+  \item \textbf{Jump Discontinuity:}  
+  The left-hand limit $\displaystyle\lim_{x \to a^-} f(x)$ and right-hand limit $\displaystyle\lim_{x \to a^+} f(x)$ both exist but are not equal.  
+  \[
+    f(x) = 
+    \begin{cases}
+        1, & x < 0 \\
+        2, & x \geq 0
+    \end{cases}
+  \]
+  Then $\displaystyle\lim_{x \to 0^-} f(x) = 1$ and $\displaystyle\lim_{x \to 0^+} f(x) = 2$.
+
+  \item \textbf{Infinite Discontinuity:}  
+  The limit $\displaystyle\lim_{x \to a} f(x)$ diverges to infinity or negative infinity. That is, $f(x)$ increases or decreases without bound near $x = a$.  
+  \[
+    f(x) = \frac{1}{x}
+    \quad \text{has an infinite discontinuity at } x = 0.
+  \]
+
+  \item \textbf{Oscillatory Discontinuity:}  
+  The function oscillates infinitely near $x = a$, so the limit does not exist due to wild fluctuations.  
+  \[
+    f(x) = \sin\left(\frac{1}{x}\right)\text{ has an oscillatory discontinuity at } x = 0.
+  \]
+\end{enumerate}
+
+\end{document}

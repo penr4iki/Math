@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, esint, physics}
+\usepackage{fancyhdr}
+\usepackage{tikz, tikz-3dplot}
+% \usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{caption}
+\usepackage{float}
+
+% Page setup
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\lhead{Single Variable Calculus: Series}
+\cfoot{\thepage}
+
+\begin{document}
+\pagestyle{plain}
+\begin{center}
+  \tableofcontents
+\end{center}
+\newpage
+\setcounter{page}{1}
+\pagestyle{fancy}
+
+\section{Sequences}
+\subsection{Definition of Sequences}
+A sequence is an ordered list of numbers written in the form 
+\[
+  a_1, a_2, a_3, \dots, a_n, \quad\textbf{or}\quad a_n\quad\textbf{or}\quad\{a_n\}_{n=1}^\infty
+\]
+It is usually represented as a function whose domain is the set of positive integers:
+\[
+    a_n = f(n)
+\]
+\subsection{$a_n$ as $n\to\infty$}
+The \textbf{limit of a sequence} as $n \to \infty$ describes the long-term behavior of the sequence:
+\[
+    \lim_{n \to \infty} a_n = L
+\]
+means that the terms of the sequence get arbitrarily close to $L$ as $n$ becomes large. If such a number $L$ exists, we say the sequence \textbf{converges} to $L$. Otherwise, it \textbf{diverges}.
+\subsection{Convergence/Divergence}
+A sequence $\{a_n\}$ \textbf{converges} to $L \in \mathbb{R}$ if
+\[
+  \lim_{n \to \infty} a_n = L \quad \Longleftrightarrow \quad \forall \varepsilon > 0, \; \exists N \in \mathbb{N}, \; \forall n > N, \; |a_n - L| < \varepsilon.
+\]
+Otherwise, the sequence \textbf{diverges}.
+\subsection{Monotone and Bounded Sequences}
+\section{Series}
+\subsection{Notation}
+\subsection{Partial Sum}
+\subsection{Types of Series}
+\subsection{Telescoping}
+\section{Convergence Tests}
+\subsection{Divergence Test}
+\subsection{Comparison}
+\subsection{Limit Comparison Test}
+\subsection{Ratio Test}
+\subsection{Root Test}
+\subsection{Integral Test}
+\subsection{Alternating Series Test}
+\subsection{Absolute vs Conditional Convergence}
+\section{Power Series}
+\subsection{Definition}
+\subsection{Radius and Interval of Convergence}
+\subsection{Differentiation and Integration}
+\section{Taylor and Maclaurin Series}
+\subsection{Taylor Series}
+A Taylor series is an infinite sum that represents a function as a power series centered at a point $a$. If a function $f(x)$ is infinitely differentiable at $x = a$, then its Taylor series is given by:
+\[
+  f(x)=\sum_{n=0}^\infty\frac{f^n(a)}{n!}(x-a)^n
+\]
+This expansion approximates the function near $x=a$
+\subsection{Maclaurin Series}
+A Maclaurin Series is a special case of Taylor Series centered at $x=0$
+\[
+  f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!} x^n
+\]
+\subsection{Common Expansions}
+
+\subsection{Lagrange Error Bound for Taylor Series}
+\subsection{Limits and Approximations}
+\section{Applications}
+\subsection{Numerical Approximation}
+\subsection{Solving ODEs}
+\subsection{Non-elementary Integrals}
+
+\end{document}
