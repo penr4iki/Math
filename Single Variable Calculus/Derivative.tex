@@ -34,20 +34,30 @@ The \textbf{derivative} of $f$ at the point $a$, denoted by $f'(a)$, is defined 
     f'(x)\,&=\lim_{h \to 0} \frac{f(x + h)-f(x)}{h}\\
         &=\lim_{x \to a}\frac{f(x)-f(a)}{x-a}
 \end{align*}
-\subsection{The First Principle}
+\subsection{The derivative at a Point $a$}
 \[
     f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}
 \]
 provided the limit exists.
-\subsection{Geometric Meaning: Slope of Tangent}
+\subsection{Geometric Meaning}
+To find the slope of the tangent line to the curve $y = f(x)$ at a point $x = a$, we consider the slope of the secant line between two points:
+\[
+    \frac{f(a+h) - f(a)}{h}
+\]
+As $h \to 0$, this secant slope approaches the derivative $f'(a)$, which is the slope of the tangent line at $x = a$.
 \begin{center}
-\begin{tikzpicture}[scale=1.2]
-    \draw[->] (-0.5,0) -- (4,0) node[right] {$x$};
-    \draw[->] (0,-0.5) -- (0,4) node[above] {$y$};
-    \draw[domain=0:2, smooth, thick] plot (\x,\x) node[above]{y=f(x)};
-\end{tikzpicture}
-\end{center}
+    \begin{tikzpicture}[scale=1.2,  spy using outlines={rectangle, magnification=2, size=2cm, connect spies}]
+        \draw[->] (-0.5,0) -- (4,0) node[right] {$x$};
+        \draw[->] (0,-0.5) -- (0,4) node[above] {$y$};
+        \draw[fill=black] (1,1) circle (.8pt) node[right](.5pt) {\small $(a, f(a))$};
+        \draw[fill=black] (1.2,1.44) circle (.8pt) node[right] {\small $(a+h, f(a+h))$};
+        
+        \draw[domain=0:2, smooth, thick] plot (\x,\x*\x) node[above]{$y=f(x)$};
+        \draw[domain=.5:2, smooth, thick, dashed, red] plot (\x,2.2*\x-1.2) node[right]{$y=f'(a)\cdot (x-a)+f(a)$};
 
+        \spy [black, dashed] on (1.3, 1.44) in node at (-1.5,3);
+    \end{tikzpicture}
+\end{center}
 \subsection{Symbols for the Derivative}
 \[
     D_xf\text{, }
@@ -131,7 +141,7 @@ If a function $y$ is given implicitly by an equation involving both $x$ and $y$,
 \[
     F(x,y) = 0.
 \]
-To find the derivative $\displaystyle\frac{dy}{dx}$, we differentiate both sides of the equation with respect to $x$, treating $y$ as a function of $x$. This means when differentiating terms involving $y$, we use the chain rule and multiply by $\displaystyle\frac{dy}{dx}$.
+To find the derivative $\displaystyle\frac{dy}{dx}$, we differentiate both sides of the equation with respect to $x$, treating $y$ as a function of $x$.
 \subsubsection*{Example:} If
 \[
     x^2 + y^2 = 25,
@@ -174,35 +184,147 @@ Then there exists $c \in (a, b)$ such that
 \[
     f'(c) = 0.
 \]
+\begin{center}
+    \begin{tikzpicture}[scale=1.2]
+        \draw[->] (-0.5,0) -- (4.5,0) node[right] {$x$};
+        \draw[->] (0,-2) -- (0,2) node[above] {$y$};
+
+        \draw[domain=.5:3.5, smooth, thick] plot (\x,{(\x-1)*(\x-3)}) node[above right] {$f(x)$};
+        \draw[fill=black] (1,0) circle (1pt) node[below left] {\small $a$};
+        \draw[fill=black] (3,0) circle (1pt) node[below right] {\small $b$};
+        \draw[dashed, thick, domain=1:3] plot (\x,-1) node[right] {$y = f'(c)(x - c) + f(c)$};
+        \fill (2,-1) circle (1pt) node[below] {$c$};
+    \end{tikzpicture}
+\end{center}
 \subsection{Mean Value Theorem}
 If $f$ is continuous on $[a, b]$ and differentiable on $(a, b)$, then  
 there exists $c \in (a, b)$ such that
 \[
     f'(c) = \frac{f(b) - f(a)}{b - a}.
 \]
+\begin{center}
+    \begin{tikzpicture}[scale=1.0]
+        \draw[->] (-0.5,0) -- (6.5,0) node[right] {$x$};
+        \draw[->] (0,-0.5) -- (0,4) node[above] {$y$};
+
+        \def\A{0.10526315789473684}
+        \def\B{-1}
+        \def\C{2.3368421052631579}
+        \def\D{0.18197226735442307}
+
+        \def\fone{1.6240775305123178}
+        \def\ftwo{1.6977617410386339}
+        \def\ffive{0.02407753051231865}
+        \def\xmin{4.787708855438377}
+
+        \draw[domain=0:6, samples=240, smooth, thick]
+            plot (\x, {\A*(\x)^3 + \B*(\x)^2 + \C*(\x) + \D}) node[right] {$f(x)$};
+
+        \coordinate (Apt) at (1, {\A*1^3 + \B*1^2 + \C*1 + \D});
+        \coordinate (Bpt) at (5, {\A*125 + \B*25 + \C*5 + \D});
+        \fill (Apt) circle (1.5pt) node[below] {\small $a$};
+        \fill (Bpt) circle (1.5pt) node[below] {\small $b$};
+
+        \def\m{-0.4}
+        \draw[dashed, thick]
+            plot[domain=0:6] (\x, {\m*(\x-1) + \fone});
+
+        \coordinate (Cpt) at (2, {\A*8 + \B*4 + \C*2 + \D});
+        \fill (Cpt) circle (1.5pt) node[above right] {\small $c$};
+        \draw[dashed, thick, red]
+            plot[domain=0:6] (\x, {\m*(\x-2) + \ftwo});
+
+    \end{tikzpicture}
+\end{center}
 \subsection{Cauchy's Mean Value Theorem}
 Let $f$ and $g$ be functions continuous on the closed interval $[a, b]$, and differentiable on the open interval $(a, b)$, with $g'(x) \ne 0$ for all $x \in (a, b)$. Then there exists at least one point $c \in (a, b)$ such that:
 \[
     \frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}
 \]
+For $g(x)=x$, Cauchy's Mean Value Theorem reduces to Mean Value Theorem. 
 \subsection{Extreme Value Theorem}
 If $f$ is continuous on $[a, b]$, then there exist points $c, d \in [a, b]$ such that
 \[
     f(c) \leq f(x) \leq f(d) ,\quad \forall x \in [a, b].
 \]
-\subsection{Darboux's Theorem}
-Let $f$ be a differentiable function on an interval $I \subset \mathbb{R}$. Then the derivative $f'$ satisfies the Intermediate Value Property: for any $a, b \in I$ with $a < b$, and any $\lambda$ between $f'(a)$ and $f'(b)$, there exists some $c \in (a, b)$ such that:
-\[
-    f'(c) = \lambda
-\]
-This means that even if $f'$ is not continuous, it cannot have jump discontinuities — it must take on all intermediate values.
+\begin{center}
+    \begin{tikzpicture}[scale=1.0]
+        \draw[->] (-0.5,0) -- (6.5,0) node[right] {$x$};
+        \draw[->] (0,-2.5) -- (0,2.5) node[above] {$y$};
+
+        \draw[domain=0:6, samples=200, smooth, thick]
+            plot (\x, {2*sin(deg(pi*\x/3))}) node[above right] {$f(x)$};
+
+        \coordinate (A) at (0, {2*sin(deg(0))});
+        \coordinate (B) at (6, {2*sin(deg(pi))});
+        \fill (A) circle (1.5pt) node[below left] {\small $a$};
+        \fill (B) circle (1.5pt) node[below right] {\small $b$};
+
+        \coordinate (c) at (1.5, {2*sin(deg(pi/2))});
+        \fill (c) circle (1.5pt) node[above] {\small $c$ max };
+
+        \coordinate (d) at (4.5, {2*sin(deg(pi/2*3))});
+        \fill (d) circle (1.5pt) node[above] {\small $d$};
+        \draw[dashed, gray] (1.5,0) -- (1.5,2);
+        \draw[dashed, gray] (4.5,0) -- (4.5,-2);
+
+    \end{tikzpicture}
+\end{center}
 
 \section{Behavior of Functions}
 \subsection{Critical Points and Extrema}
+\begin{itemize}
+    \item \textbf{Critical Point:} A point $c$ in the domain of $f$ where $f'(c) = 0$ or $f'(c)$ does not exist.
+    \item \textbf{Local Maximum:} $f(c)$ is a local maximum if $f(c) \geq f(x)$ for all $x$ near $c$.
+    \item \textbf{Local Minimum:} $f(c)$ is a local minimum if $f(c) \leq f(x)$ for all $x$ near $c$.
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+    \draw[->] (-2,0) -- (2,0) node[right] {$x$};
+    \draw[->] (0,-1) -- (0,3) node[above] {$y$};
+    \draw[domain=-1.5:1.5,smooth, thick] plot(\x,{ -(\x)^2 + 2.25});
+    \draw[domain=-1.5:1.5,smooth, dashed] plot(\x,{2.25}) node [right]{\small $f'(c)=0$};
+    \fill (0,2.25) circle (1.5pt) node[above left] {\small max};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[scale=0.7]
+    \draw[->] (-2,0) -- (2,0) node [right] {$x$};
+    \draw[->] (0,-3) -- (0,1) node [above] {$y$};
+    \draw[domain=-1.5:1.5,smooth, thick] plot(\x,{ (\x)^2 - 2});
+    \draw[domain=-1.5:1.5,smooth, dashed] plot(\x,-2) node [right]{\small $f'(c)=0$};
+    \fill (0,-2) circle (1.5pt) node [below] {\small min};
+\end{tikzpicture}
+\end{center}
 \subsection{Concavity and Inflection Points}
-\subsection{Derivative Tests}
-\subsubsection{First Derivative Test}
-\subsubsection{Second Derivative Test}
+\begin{itemize}
+    \item \textbf{Concave Up:} $f''(x) > 0$ on an interval $\implies$ graph lies above tangent lines.
+    \item \textbf{Concave Down:} $f''(x) < 0$ on an interval $\implies$ graph lies below tangent lines.
+    \item \textbf{Inflection Point:} A point where $f''(x)$ changes sign.
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+    \draw[->] (-2,0) -- (2,0) node [right] {$x$};
+    \draw[->] (0,-1) -- (0,3) node [above] {$y$};
+    \draw[domain=-1.5:1.5,smooth,thick] plot(\x,{ (\x)^2 });
+    \node at (0,-1.2) {\small Concave Up $f''(x)>0$};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[scale=0.7]
+    \draw[->] (-2,0) -- (2,0) node [right] {$x$};
+    \draw[->] (0,-1) -- (0,3) node [above] {$y$};
+    \draw[domain=-1.5:1.5,smooth,thick] plot(\x,{ -(\x)^2 + 2});
+    \node at (0,-1.2) {\small Concave Down $f''(x)<0$};
+\end{tikzpicture}
+\hspace{1cm}
+\begin{tikzpicture}[scale=0.7]
+    \draw[->] (-2,0) -- (2,0) node [right] {$x$};
+    \draw[->] (0,-1) -- (0,3) node [above] {$y$};
+    \draw[domain=-1.3:1.3,smooth,thick] plot (\x, {(\x)^3+1});
+    \fill (0,1)circle (3pt);
+    \node at (0,1) {\small Inflection Point $f''(x)=0$};
+\end{tikzpicture}
+\end{center}
+
 
 \section{Applications}
 \subsection{Related Rates}
@@ -210,10 +332,10 @@ This means that even if $f'$ is not continuous, it cannot have jump discontinuit
 \subsection{Linear Approximation (First-Order Taylor Expantion)}
 If $f$ is differentiable at $x=a$, then near $a$, the function $f(x)$ is approximated by
 \[
-    f(x) \approx f(a)+f'(x)(x-a)
+    f(x) \approx f(a)+f'(a)(x-a)
 \]
 \subsubsection*{Example:}
-for all $x$ near $0$, $\sin x$ can be approximated by $\sin x \approx \sin(0) + \cos(0)\cdot x = x$
+for $x$ near $0$, $\sin x$ can be approximated by $\sin x \approx \sin(0) + \cos(0)\cdot x = x$
 \begin{center}
     \begin{tikzpicture}[scale=2, spy using outlines={rectangle, magnification=1, size=1cm, connect spies}]
         \draw[->] (-1.7,0) -- (1.7,0) node[right] {$x$};

@@ -1,14 +1,15 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage{amsmath, amssymb, amsthm, esint, physics}
+\usepackage{mathtools}
 \usepackage{fancyhdr}
 \usepackage{tikz, tikz-3dplot}
 % \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{caption}
 \usepackage{float}
+\usepackage{cancel}
 
-% Page setup
 \pagestyle{fancy}
 \setlength{\headheight}{14pt}
 \fancyhf{}
@@ -53,12 +54,119 @@ Otherwise, the sequence \textbf{diverges}.
 \subsection{Types of Series}
 \subsection{Telescoping}
 \section{Convergence Tests}
+The necessary condition for a series $\{a_n\}$ to converge is that $\displaystyle\lim_{n\to\infty}a_n=0$.
+\subsection{The Informal Principle}
+\[
+  \sum\frac{4n^3-n+1}{n^5+7n^2-6}\approx\sum\frac{4\cancel{n^3}}{\cancel{n^5}}\approx 4\sum\frac{1}{n^2}
+\]
 \subsection{Divergence Test}
-\subsection{Comparison}
-\subsection{Limit Comparison Test}
-\subsection{Ratio Test}
-\subsection{Root Test}
+If $\displaystyle\lim_{n\to\infty}a_n\neq0$, Then the series \textbf{diverges}.
 \subsection{Integral Test}
+If $a_n=f(n)$ where $f$ is continuous, decreasing, and positive on $(c,\infty]$, then $\displaystyle\sum_{n=1}^\infty$ converges $\displaystyle \iff\int_c^\infty f(x)\,dx$ exists
+\subsubsection*{Example:}
+\[
+  \text{Let }f(n)=\frac{1}{n^2}\sin(\frac{\pi}{n})
+\]
+$f(n)$ is continuous, decreasing, positive on $[2,\infty)$. Then by Integral Test:
+\[
+  \int_{2}^{\infty}\frac{1}{x^2}\sin(\frac{\pi}{x})\,dx=\frac{1}{\pi}
+\]
+Thus,
+\[
+  \sum_{n=1}^\infty \frac{1}{n^2}\sin(\frac{\pi}{n})\textbf{ converges}
+\]
+\subsection{Comparison Test}
+If $0\le a_n \le b_n$ and $\sum b_n$ converges, then $\sum a_n$ converges.
+\subsubsection*{Example:}
+\[
+  \sum_{n=1}^\infty \frac{1}{n^2+5} \approx \sum_{n=1}^\infty \frac{1}{n^2}
+\]
+and $\displaystyle\sum_{n=1}^\infty \frac{1}{n^2}$ converges. Thus
+\[
+  \sum_{n=1}^\infty \frac{1}{n^2+5}\textbf{ converges}
+\]
+\subsection{Limit Comparison Test}
+If $0<a_n$ and $0<b_n$, if $\displaystyle\lim_{n\to\infty}\frac{a_n}{b_n}=L$, then either both \textbf{converges} or \textbf{diverges}.
+\subsubsection*{Example:}
+\[
+  \sum_{n=1}^\infty \frac{1}{4n+3}
+\]
+By approximating
+\[
+  \displaystyle\sum_{n=1}^\infty \frac{1}{4n+3} \approx \sum_{n=1}^\infty \frac{1}{n}
+\]
+We choose $\displaystyle\frac{1}{n}$ as $b_n$
+\[
+  \lim_{n\to\infty} \frac{\frac{1}{4n+3}}{\frac{1}{n}}=\lim_{n\to\infty}\frac{\cancel{n}}{4\cancel{n+3}}=\frac{1}{4}
+\]
+Since $\displaystyle\sum\frac{1}{n}$ diverges,
+\[
+  \sum_{n=1}^\infty \frac{1}{4n+3}\textbf{ diverges}
+\]
+\subsection{Ratio Test}
+Given $a_n$ and $a_{n+1}$, we find the limit of their absolute ratio, i.e. $\displaystyle\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|$. 
+\[
+  \lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|=
+  \begin{cases}
+    <1, &\textbf{Converges}\\
+    =1, &\textbf{Inconclusive}\\
+    >1, &\textbf{Diverges}
+  \end{cases}
+\]
+\subsubsection*{Example:}
+\[
+  \sum_{n=1}^\infty \frac{2^n(n+1)}{n!}
+\]
+We find the limit of their absolute ratio
+\[
+  \begin{aligned}
+    &\lim_{n\to\infty} \left(\frac{2^{n+1}(n+2)}{(n+1)!}\cdot\frac{n!}{2^n(n+1)}\right)\\
+    =&\lim_{n\to\infty} \left(
+        \frac{2^{\cancel{n}+1}(n+2)}{(n+1)\cancel{!}}\cdot\frac{\cancel{n!}}{\cancel{2^n}\cancel{(n+1)}}
+      \right)\\
+    =&\lim_{n\to\infty}\frac{2(n+2)}{(n+1)^2}\\
+    =&\,0<1
+  \end{aligned}
+\]
+Thus,
+\[
+  \sum_{n=1}^\infty \frac{2^n(n+1)}{n!}\textbf{ converges}
+\]
+\subsection{Root Test}
+Given $\displaystyle\sum a_n$ , we find the limit of the n-th root of $a_n$, i.e. $\displaystyle\lim_{n\to\infty}\sqrt[n]{\left|{a_n}\right|}$.
+The limit measures the asymptotic size of the terms by looking at their n-th root.
+\[
+  \lim_{n\to\infty}\sqrt[n]{\left|{a_n}\right|}=
+  \begin{cases}
+    <1, &\textbf{Converges}\\
+    =1, &\textbf{Inconclusive}\\
+    >1, &\textbf{Diverges}
+  \end{cases}
+\]
+\subsubsection*{Example:}
+\[
+  \sum_{n=1}^{\infty} \frac{n^3}{5^n} \left(1+\frac{1}{n}\right)^{n}.
+\]
+Apply Root Test:
+\[
+  \begin{aligned}
+    &\lim_{n\to\infty}\sqrt[n]{|a_n|}\\
+    =&\lim_{n\to\infty}\sqrt[n]{n^3} \cdot \sqrt[n]{\frac{1}{5^n}} \cdot \sqrt[n]{\left(1+\frac{1}{n}\right)^{n}}
+  \end{aligned}
+\]
+Evaluate:
+\[
+  \begin{aligned}
+    &\sqrt[n]{n^3} \to 1\text{ because } n^{3/n} \to 1.\\[10pt]
+    &\sqrt[n]{\frac{1}{5^n}} = \frac{1}{5}.\\[10pt]
+    &\sqrt[n]{\left(1+\frac{1}{n}\right)^{n}} \to e^{1/n} \to 1\\[10pt]
+    &\Rightarrow\lim_{n\to\infty}\sqrt[n]{|a_n|}=1 \cdot \left(\frac{1}{5}\right) \cdot 1 = \frac{1}{5}<1
+  \end{aligned}
+\]
+Thus,
+\[
+  \sum_{n=1}^\infty \frac{2^n(n+1)}{n!}=\textbf{ converges}
+\]
 \subsection{Alternating Series Test}
 \subsection{Absolute vs Conditional Convergence}
 \section{Power Series}
@@ -77,9 +185,31 @@ A Maclaurin Series is a special case of Taylor Series centered at $x=0$
 \[
   f(x) = \sum_{n=0}^{\infty} \frac{f^{(n)}(0)}{n!} x^n
 \]
-\subsection{Common Expansions}
-
+\subsection{Common Maclaurin Series}
+\begin{itemize}
+  \item$\displaystyle e^x = \sum_{n=0}^\infty \frac{x^n}{n!}$
+  \item$\displaystyle \sin(x) = \sum_{n=0}^\infty \frac{(-1)^n}{(2n+1)!}\,x^{2n+1}$
+  \item$\displaystyle \cos(x) = \sum_{n=0}^\infty \frac{(-1)^n}{2n!}\,x^{2n}$
+  \item$\displaystyle \frac{1}{1-x} = \sum_{n=0}^\infty x^n$
+  \item$\displaystyle \frac{1}{1+x} = \sum_{n=0}^\infty (-1)^nx^n$
+  \item$\displaystyle \ln(1-x) = \sum_{n=0}^\infty \frac{1}{n+1}x^{n+1}$
+  \item$\displaystyle \ln(1+x) = \sum_{n=0}^\infty \frac{(-1)^n}{n+1}x^{n+1}$
+\end{itemize}
 \subsection{Lagrange Error Bound for Taylor Series}
+The Lagrange error bound provides a way to estimate how close the Taylor polynomial $T_n(x)$ is to the actual function $f(x)$.  
+Let $f$ be a function with $(n+1)$ continuous derivatives on an interval containing $a$ and $x$. The Taylor polynomial of degree $n$ centered at $a$ is
+\[
+T_n(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \cdots + \frac{f^{(n)}(a)}{n!}(x-a)^n.
+\]
+The remainder/error term in Lagrange form is
+\[
+  R_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}
+\]
+for some $c\in[x,a]$.
+\subsubsection*{Error Bound}
+\[
+  |R_n(x)| \le \frac{\text{M}}{(n+1)!} |x-a|^{n+1}\text{, where }M\text{ is max(}|f^{n+1}(c)|\text{)}
+\]for some $c\in[x,a]$
 \subsection{Limits and Approximations}
 \section{Applications}
 \subsection{Numerical Approximation}

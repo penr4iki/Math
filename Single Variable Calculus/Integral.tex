@@ -500,7 +500,7 @@ The area under the curve using $n$ rectangles of equal length is approximately:
     \begin{cases}
         \,\displaystyle\sum_{i=1}^nf(x_{i-1})\Delta x\text{ left-endpoint rectangles}\\[15pt]
         \,\displaystyle\sum_{i=1}^nf(x_i)\Delta x\text{ right-endpoint rectangles}\\[15pt]
-        \,\displaystyle\sum_{i=1}^nf(\frac{x_i+x_{i+1}}{2})\Delta\text{ midpoint rectangles}x
+        \,\displaystyle\sum_{i=1}^nf(\frac{x_i+x_{i+1}}{2})\Delta x\text{ midpoint rectangles}
     \end{cases}
 \]where $\displaystyle\Delta x=\frac{b-a}{n}$ and $a=x_0<x_1<x_2<\dots<x_n=b$
 \begin{figure}[H]
@@ -632,22 +632,15 @@ Let $y = f(x)$ be a smooth curve on the interval $[a, b]$, where $f$ is differen
 \[
     L = \int_a^b \sqrt{1 + \left(\frac{dy}{dx}\right)^2} \, dx
 \]
-or if $x, y$ are given by $x(t), y(t)$
-\[
-    L = \int_a^b \sqrt{\left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2} \, dx
-\]
 \subsubsection{Surface Area}
 Let $y = f(x)$ be continuous and differentiable on $[a, b]$, and suppose we rotate it about the $x$-axis. Then the surface area of the resulting solid is:
 \[
     S = 2\pi y \int_a^b \sqrt{1 + \left(\frac{dy}{dx}\right)^2} \, dx
 \]
-
 \subsection{Average Value of a Function}
 The average value of a continuous function $f(x)$ over the interval $[a, b]$ is given by:
 \[
     f_{\text{avg}} = \frac{1}{b - a} \int_a^b f(x)\,dx
-    \quad\text{or}
-    \quad(b-a)\cdot f_{\text{avg}}=\int_a^b f(x)\,dx
 \]
 \begin{figure}[H]
     \centering
@@ -671,5 +664,7 @@ The average value of a continuous function $f(x)$ over the interval $[a, b]$ is 
         \end{scope}
     \end{tikzpicture}
 \end{figure}
+\section{Integration for Parametric}
+\section{Integration for Polar}
 
 \end{document}
