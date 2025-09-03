@@ -1,0 +1,112 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb, amsthm, esint}
+\usepackage{fancyhdr}
+\usepackage{tikz, tikz-3dplot}
+% \usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{cancel}
+
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\lhead{Discrete Mathematics}
+\cfoot{\thepage}
+
+\begin{document}
+\pagestyle{plain}
+\begin{center}
+    \tableofcontents
+\end{center}
+\newpage
+\setcounter{page}{1}
+\pagestyle{fancy}
+\section{Logic and Proofs}
+\subsection{Propositional Logic}
+Proposition is a statement that is \textbf{either} true or false, but not both at the same time. We usually represent it with variables like $p$, $q$, and $r$.\\
+e.g. "The sky is blue." is a proposition, but "Listen to me" is not. 
+\subsubsection*{Logical Connectives}
+\begin{itemize}
+    \item Negation: $\lnot \,p$. It is not the case that $p$.
+    \item Conjunction: $p \land q$. "and"
+    \item Disjunction: $p \lor q$. "or"
+    \item Implication: $p \rightarrow q$. If $p$ then $q$, $q$ if $p$, $q$ is a consequence of $p$, $p$ only if $q$
+    \item biconditional: $p \leftrightarrow q$. $(p\rightarrow q)\land(q \rightarrow p)$, $p$ if and only if $q$
+\end{itemize}
+\subsubsection*{Truth Table}
+\begin{table}[H]
+    \centering
+    \hfill
+    \begin{minipage}{.32\textwidth}
+        \centering
+        \begin{tabular}{c|c|c}
+            $p$ & $q$ & $p \lor q$\\
+            \hline
+            T & T & T\\
+            T & F & T\\
+            F & T & T\\
+            F & F & F
+        \end{tabular}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{.32\textwidth}
+        \centering
+        \begin{tabular}{c|c|c}
+            $p$ & $q$ & $p \land q$\\
+            \hline
+            T & T & T\\
+            T & F & F\\
+            F & T & F\\
+            F & F & F
+        \end{tabular}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{.32\textwidth}
+        \centering
+        \begin{tabular}{c|c|c}
+            $p$ & $q$ & $p \rightarrow q$\\
+            \hline
+            T & T & T\\
+            T & F & F\\
+            F & T & T\\
+            F & F & T
+        \end{tabular}
+    \end{minipage}
+    \hfill
+\end{table}
+\subsubsection*{Example}
+Find the truth value of $\boldsymbol{(p \lor q)\rightarrow \lnot \,r}$
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c|c|c|c}
+        $p$ & $q$ & $r$ & $p \lor q$ & $\lnot \,r$& $(p \lor q)\rightarrow \lnot\, r$ \\
+        \hline
+        T & T & T & T & F & F\\
+        T & T & F & T & T & T\\
+        T & F & T & T & F & F\\
+        T & F & F & T & T & T\\
+        F & T & T & T & F & F\\
+        F & T & F & T & T & T\\
+        F & F & T & F & F & T\\
+        F & F & F & F & T & T
+    \end{tabular}
+\end{table}
+\subsubsection*{Logical Equivalence (L.E.)}
+Two statements are logically equivalent if they always have the same truth value in every possible scenario.\\
+e.g. $p$ and $q$ are biconditional, i.e. $p \leftrightarrow q$, means that $p$ and $q$ are logically equivalent. \\
+There are two ways to prove L.E., one is by truth table, the other is by applying logical laws.\\
+\subsubsection*{Show that $p\rightarrow q$ is logically equivalent to $\lnot \,q \rightarrow \lnot \, p$}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c|c|c}
+        $p$ & $q$ & $p \rightarrow q$ & $\lnot \, q\rightarrow \lnot\, p$ \\
+        \hline
+        T & T & T & T\\
+        T & F & F & F\\
+        F & T & T & T\\
+        F & F & T & T\\
+    \end{tabular}
+\end{table}
+\subsection{Application of Propositional Logic}
+
+\end{document}
