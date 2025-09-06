@@ -76,7 +76,7 @@ Its eivenvalues are given by the \textbf{characteristic eqaution}
         1-\lambda & 1\\1 & -\lambda
     \end{vmatrix}=0 \Rightarrow \boxed{\lambda^2 - \lambda - 1 = 0}
 \]
-, and a quick computation yields $\displaystyle\lambda = \varphi \lor -\frac{1}{\varphi}$.\\
+, and a quick computation yields $\displaystyle\lambda = \varphi \,_\lor -\frac{1}{\varphi}$.\\
 \subsubsection*{Notice that this is exactly the same as the equation obtained from assuming $F_n = \lambda^n$ in the Fibonacci recurrence:}
 \[
     F_n = F_{n-1} + F_{n-2} \Leftrightarrow \lambda^n  = \lambda^{n-1} + \lambda^{n-2} \Rightarrow  \boxed{\lambda^2  = \lambda + 1}
@@ -84,7 +84,7 @@ Its eivenvalues are given by the \textbf{characteristic eqaution}
 \subsection{Deriving the Closed Form}
 We can now express $x_n = A^n x_0$ explicitly in terms of $\lambda_1$ and $\lambda_2$. Let us consider
 \[
-    F_n=p\cdot(\varphi)^n + q\cdot(-\frac{1}{\varphi})^n
+    F_n=p\cdot\varphi^n + q\cdot(-\frac{1}{\varphi})^n
 \]
 By initial contidion $F_0=F_1=1$, 
 \[
@@ -99,7 +99,7 @@ By initial contidion $F_0=F_1=1$,
         \displaystyle
         \,p=\frac{1}{\sqrt{5}}\varphi\\
         \displaystyle
-        \,q=-\frac{1}{\sqrt{5}}\varphi
+        \,q=-\frac{1}{\sqrt{5}}\frac{1}{\varphi}
     \end{cases}
 \]
 Thus, 
@@ -114,7 +114,7 @@ We start by  homogeneous linear equation
 \[
     a_n=3a_{n-1}\Rightarrow x^2=3x
 \]
-Quick calculation gives $\displaystyle x=0 \text{ or }3$, then we assume the general formula in eigenvalue approach plus a displacement $r$.
+Quick calculation gives $\displaystyle x=0 \,_\lor \,3$, then we assume the general formula in eigenvalue approach plus a displacement $r$.
 \[
     a_n=p\cdot 3^n + q\cdot 0^n + r
 \]
@@ -139,7 +139,7 @@ Thus the general formula for $a_n$ is
     a_n = 3^n - 1 _\#
 \]
 \subsubsection{Five-Color Planar Graph Coloring}
-
+\subsubsection*{Solution}
 
 
 
@@ -155,7 +155,7 @@ $\begin{cases}
         \displaystyle
         \,a_1x_1+a_2x_2+\dots+a_nx_n\\
         \displaystyle
-        \,a_1 \neq 0 \, \& \, a_i = 0 \text{ for } i \geq 2
+        \,a_1 \neq 0 \, \& \, x_i = 0 \text{ for } i \geq 2
     \end{cases}
 \]
 \subsection{Trun into Graph}
@@ -233,39 +233,4 @@ e.g. For a path graph $G \in P_n$, the adjacency matrix is
     \vfill
     \end{minipage}
 \end{minipage}
-% \subsection{The Adjacency Matrix}
-% \begin{minipage}{.2\textwidth}
-%     \centering
-%     \begin{tikzpicture}
-%         \node (1) at (0,1.7) {1};
-%         \node (2) at (0,.85) {2};
-%         \node (3) at (-.5,0) {3};
-%         \node (4) at (.5,0) {4};
-        
-%         \draw[->] (3) -- (4);
-%         \draw[->] (1) -- (2);
-%         \draw[->] (2) -- (3);
-%         \draw[->] (2) -- (4);
-%     \end{tikzpicture}
-% \end{minipage}%
-% \hfill
-% \begin{minipage}{.2\textwidth}
-% \[
-%     \begin{bmatrix}
-%         0 & 1 & 0 & 0\\
-%         0 & 1 & 0 & 0\\
-%         0 & 1 & 0 & 0\\
-%         0 & 1 & 0 & 0
-%     \end{bmatrix}
-% \]
-% \end{minipage}%
-% \hfill
-% \begin{minipage}{.4\textwidth}
-% Find the
-% $\begin{cases}
-%     \text{Rank}(A) \\[.5em]
-%     \text{Nullity}(A) \\[.5em]
-%     \parbox{.6\linewidth}{The number of distinct eigenvalues}
-% \end{cases}$
-% \end{minipage}
 \end{document}

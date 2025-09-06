@@ -6,6 +6,8 @@
 % \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{float}
+\usepackage{booktabs}
+\usepackage{array}
 \usepackage{cancel}
 
 \setlength{\headheight}{14pt}
@@ -25,13 +27,20 @@
 \subsection{Propositional Logic}
 Proposition is a statement that is \textbf{either} true or false, but not both at the same time. We usually represent it with variables like $p$, $q$, and $r$.\\
 e.g. "The sky is blue." is a proposition, but "Listen to me" is not. 
-\subsubsection*{Logical Connectives}
+\subsubsection{Logical Connectives}
 \begin{itemize}
     \item Negation: $\lnot \,p$. It is not the case that $p$.
     \item Conjunction: $p \land q$. "and"
     \item Disjunction: $p \lor q$. "or"
     \item Implication: $p \rightarrow q$. If $p$ then $q$, $q$ if $p$, $q$ is a consequence of $p$, $p$ only if $q$
     \item biconditional: $p \leftrightarrow q$. $(p\rightarrow q)\land(q \rightarrow p)$, $p$ if and only if $q$
+\end{itemize}
+\subsubsection{Variations of Conditionals}
+\begin{itemize}
+    \item Implication: $p \rightarrow q$
+    \item Converse: $q \rightarrow p$
+    \item Inverse: $\lnot p \rightarrow \lnot q$
+    \item Contrapositive: $\lnot q\rightarrow \lnot p$. This is logically equivalent to Implication
 \end{itemize}
 \subsubsection*{Truth Table}
 \begin{table}[H]
@@ -91,15 +100,69 @@ Find the truth value of $\boldsymbol{(p \lor q)\rightarrow \lnot \,r}$
         F & F & F & F & T & T
     \end{tabular}
 \end{table}
-\subsubsection*{Logical Equivalence (L.E.)}
+\subsection{Application of Propositional Logic}
+\subsubsection{Classification of Proposition}
+\begin{itemize}
+    \item Tautology: Always true. e.g. $p\lor \lnot\,p$
+    \item Contradiction: Always false. e.g. $p\land \lnot\,p$
+    \item Contingency: Depends on variable. e.g. $p\rightarrow q$
+\end{itemize}
+\subsubsection{Logical Equivalence $p \equiv q$}
 Two statements are logically equivalent if they always have the same truth value in every possible scenario.\\
-e.g. $p$ and $q$ are biconditional, i.e. $p \leftrightarrow q$, means that $p$ and $q$ are logically equivalent. \\
-There are two ways to prove L.E., one is by truth table, the other is by applying logical laws.\\
-\subsubsection*{Show that $p\rightarrow q$ is logically equivalent to $\lnot \,q \rightarrow \lnot \, p$}
+e.g. $p$ and $q$ are biconditional, i.e. $p \leftrightarrow q$, means that $p$ and $q$ are logically equivalent.
+\subsubsection{Laws of Logical Equivalence}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{>{$}l<{\quad$}|l}
+        \text{Equivalence} & \text{Name} \\
+        \hline
+        p \land T \equiv p & Identity laws \\
+        p \lor F \equiv p & \\
+        \hline
+        p \lor T \equiv T & Domination laws \\
+        p \land F \equiv F & \\
+        \hline
+        p \lor p \equiv p & Idempotent laws \\
+        p \land p \equiv p & \\
+        \hline
+        \lnot(\lnot p) \equiv p & Double negation law \\
+        \hline
+        p \lor q \equiv q \lor p & Commutative laws \\
+        p \land q \equiv q \land p & \\
+        \hline
+        (p \lor q) \lor r \equiv p \lor (q \lor r) & Associative laws \\
+        (p \land q) \land r \equiv p \land (q \land r) & \\
+        \hline
+        p \lor (q \land r) \equiv (p \lor q) \land (p \lor r) & Distributive laws \\
+        p \land (q \lor r) \equiv (p \land q) \lor (p \land r) & \\
+        \hline
+        \lnot(p \land q) \equiv \lnot p \lor \lnot q & De Morgan's laws \\
+        \lnot(p \lor q) \equiv \lnot p \land \lnot q & \\
+        \hline
+        p \lor (p \land q) \equiv p & Absorption laws \\
+        p \land (p \lor q) \equiv p & \\
+        \hline
+        p \lor \lnot p \equiv T & Negation laws \\
+        p \land \lnot p \equiv F & \\
+        \hline
+        p \rightarrow q \equiv \lnot p \lor q & Conditional\\
+        p \rightarrow q \equiv \lnot q \rightarrow \lnot p & \\
+        \hline
+        p \leftrightarrow q \equiv (p \rightarrow q) \land (q \rightarrow p) & Biconditional\\
+        p \leftrightarrow q \equiv \lnot p \leftrightarrow \lnot q & \\
+    \end{tabular}
+\end{table}
+\subsubsection{Determine Logical Equivalence: }
+\begin{enumerate}
+    \item Verify with Truth Table
+    \item Apply Known knowledge
+\end{enumerate}
+\subsubsection*{Show that $p\rightarrow q$ is logically equivalent to $\lnot q \rightarrow \lnot p$}
 \begin{table}[H]
     \centering
     \begin{tabular}{c|c|c|c}
-        $p$ & $q$ & $p \rightarrow q$ & $\lnot \, q\rightarrow \lnot\, p$ \\
+        $p$ & $q$ & $p \rightarrow q$ & $\lnot q\rightarrow \lnot p$ \\
         \hline
         T & T & T & T\\
         T & F & F & F\\
@@ -107,6 +170,38 @@ There are two ways to prove L.E., one is by truth table, the other is by applyin
         F & F & T & T\\
     \end{tabular}
 \end{table}
-\subsection{Application of Propositional Logic}
+\subsubsection*{Show that $(p\rightarrow r)\lor (q\rightarrow r) \equiv (p\land q)\rightarrow r$}
+\begin{align*}
+    (p\rightarrow r)\lor (q\rightarrow r) &\equiv(\lnot p \lor r)\lor (\lnot q \lor r)\\
+    &\equiv(\lnot p \lor \lnot q)\lor(r\lor r)\\
+    &\equiv\lnot(p\land q) \lor r\\
+    &\equiv (p\land q)\rightarrow r _\#
+\end{align*}
+\subsection{Predicate and Quantifier}
+\subsubsection{Predicate}
+A predicate is a statement with variables that becomes true or false only once specific values are substituted. $P(x)$ denotes a predicate involving $x$.\\
+e.g. Let $P(x)$ be the statement "x>4." We read $P(x)$ as "$x$ is greater than $4$."
+\begin{itemize}
+    \item $P(x)$ is true if x = 5
+    \item $P(x)$ is false if x = 3
+\end{itemize}
+\subsubsection*{General Form}    
+$P(x_1, x_2, x_3, \dots, x_n)$ where each $x_i$ is a variable from the domain of discourse. 
+\subsubsection{Quantifier}
+\begin{itemize}
+    \item Universal quantifier $\forall$: "for all", "every".
+    \item Existential quantifier $\exists$: "there exists", "some", "at least one".
+\end{itemize}
+\subsubsection*{Negating Quantifier}
+\begin{align*}
+    \begin{cases}
+        \lnot \forall x \,P(x) \equiv \exists x \,\lnot P(x)\\
+        \lnot \exists x \,P(x) \equiv \forall x\, \lnot P(x)
+    \end{cases}
+\end{align*}
+\subsubsection*{Nested Quantifier}
+\[
+    \forall x \exists y \,P(x, y) \neq\exists y \forall x \,P(x)
+\]
 
 \end{document}
