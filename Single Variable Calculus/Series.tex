@@ -47,12 +47,92 @@ A sequence $\{a_n\}$ \textbf{converges} to $L \in \mathbb{R}$ if
   \lim_{n \to \infty} a_n = L \quad \Longleftrightarrow \quad \forall \varepsilon > 0, \; \exists N \in \mathbb{N}, \; \forall n > N, \; |a_n - L| < \varepsilon.
 \]
 Otherwise, the sequence \textbf{diverges}.
-\subsection{Monotone and Bounded Sequences}
 \section{Series}
 \subsection{Notation}
+A series is the sum of the terms of a sequence $\{a_n\}$.
+Formally, the $n$-th partial sum of the series is
+\[
+    S_n = \sum_{i=1}^n a_i = a_1 + a_2 + \cdots + a_n
+\]
+If the sequence $\{S_n\}$ converges to a finite limit $S$ as $n \to \infty$, then we write
+\[
+    \sum_{i=1}^{\infty} a_i = L
+\]
+and say that the series converges to $L$. Otherwise, it diverges.
 \subsection{Partial Sum}
+A partial sum of a series given by 
+\[
+  s_n = a_1+a_2+a_3+\dots+a_n = \sum_{i=1}^{n}a_i
+\]
 \subsection{Types of Series}
-\subsection{Telescoping}
+\subsubsection*{p-Series}
+The p-series is a series of the form 
+\[
+  1+\frac{1}{2^p}+\frac{1}{3^p}+\dots=\sum_{n=1}^\infty \frac{1}{n^p}
+\]
+The series converges when $p > 1$, and diverges when $p < 1$
+\subsubsection*{Harmonic Series}
+The harmonic series is a p-series with p = 1
+\[
+  1+\frac{1}{2}+\frac{1}{3}+\dots=\sum_{n=1}^\infty \frac{1}{n}
+\]
+It diverges
+\subsubsection*{Geometric Series}
+A geomeric series is a series of a form 
+\[
+  \sum_{n=1}^\infty ar^{n-1}
+\]
+The series converges when $\abs{r} < 1$.
+The sum of the first $n$ terms of the series is 
+\[
+  s_n = \frac{a(1-r^n)}{1-r}
+\]
+The sum of the series is
+\[
+  \lim_{n\to\infty}s_n = \lim_{n\to\infty}\frac{a(1-r^n)}{1-r} = \frac{a}{1-r}
+\]
+\subsubsection*{Decimal Expansion}
+The rational number equal to the repeating decimal is the sum of the geometric series that represents the repeating decimal. 
+\[
+  \begin{split}
+    3.8\overline{76}&=3.8+.76+.0076+\dots\\
+    &=\frac{38}{10}+\frac{76}{10^3}+\frac{76}{10^5}+\dots\\
+    &=\frac{38}{10}+\sum_{n=1}^\infty\frac{76}{10^{2n+1}}\\
+    &=\frac{38}{10}+\frac{76}{10^3}\cdot\frac{1}{1-\frac{1}{10^2}}\\
+    &=\frac{1919}{495}
+  \end{split}
+\]
+\subsubsection*{Telescoping}
+A telescoping series is a series in which most terms cancel out when expanded, leaving only a few terms that determine the sum.  
+Suppose we have a series of the form
+\[
+    \sum_{n=1}^{\infty} \big( a_n - a_{n+1} \big)
+\]
+If the sequence $\{a_n\}$ converges to a limit $L$ as $n \to \infty$, then the partial sum becomes
+\[
+    S_N = (a_1 - a_2) + (a_2 - a_3) + \cdots + (a_N - a_{N+1}) = a_1 - a_{N+1}
+\]
+Taking the limit as $N \to \infty$, we find
+\[
+    \sum_{n=1}^{\infty} (a_n - a_{n+1}) = a_1 - L
+\]
+\textbf{Example:}
+Consider:
+\[
+    \sum_{n=1}^{\infty} \left( \frac{1}{n} - \frac{1}{n+1} \right)
+\]
+The partial sum is
+\[
+    S_N = \left(1 - \tfrac{1}{2}\right) + \left(\tfrac{1}{2} - \tfrac{1}{3}\right) + \cdots + \left(\tfrac{1}{N} - \tfrac{1}{N+1}\right)
+\]
+All intermediate terms cancel, leaving
+\[
+    S_N = 1 - \frac{1}{N+1}
+\]
+Taking the limit as $N \to \infty$,
+\[
+    \sum_{n=1}^{\infty} \left( \frac{1}{n} - \frac{1}{n+1} \right) = 1
+\]
 \section{Convergence Tests}
 The necessary condition for a series $\{a_n\}$ to converge is that $\displaystyle\lim_{n\to\infty}a_n=0$.
 \subsection{The Informal Principle}

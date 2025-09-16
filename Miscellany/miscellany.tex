@@ -72,8 +72,8 @@ Let us now consider the Fibonacci matrix
 \]
 Its eivenvalues are given by the \textbf{characteristic eqaution}
 \[
-    \det(A-\lambda I)=\begin{vmatrix}
-        1-\lambda & 1\\1 & -\lambda
+    \det(\lambda I-A)=\begin{vmatrix}
+        \lambda-1 & -1\\-1 & \lambda
     \end{vmatrix}=0 \Rightarrow \boxed{\lambda^2 - \lambda - 1 = 0}
 \]
 , and a quick computation yields $\displaystyle\lambda = \varphi \,_\lor -\frac{1}{\varphi}$.\\
@@ -233,4 +233,50 @@ e.g. For a path graph $G \in P_n$, the adjacency matrix is
     \vfill
     \end{minipage}
 \end{minipage}
+\subsection{Appendix}
+\subsubsection{Eigenvalue of path graph $\boldsymbol{P_n}$ }
+Let $p_n$ denote the characteristic polynomial of path $P_n$
+The recurrence formula is given by
+\begin{align*}
+    \begin{cases}
+        p_{n+2} = \lambda p_{n+1} + p_n\\
+        p_0 = 1, \,p_1 = \lambda
+    \end{cases}
+    \overset{\text{Ansatz } r^n\,=\,p_n}{\Rightarrow}
+    \quad
+    &r^2 = \lambda r - 1
+\end{align*}
+Solving $r^2 = \lambda r - 1$ gives 
+\[
+    r = \frac{\lambda \pm \sqrt{\lambda^2-4}}{2}
+\]
+By Gershgorin's Theorem, $|\lambda|\leq 2$\\
+Let 
+\[
+    \lambda = 2\cos\theta \Rightarrow r=\cos\theta \pm i\sin\theta = e^{\pm i\theta}
+\]
+Therefore,
+\[
+    p_n(\lambda)=\alpha e^{i\text{n}\theta} + \beta e^{-i\text{n}\theta}
+\]
+By initial condition $p_0 = 1, \,p_1=\lambda$
+\[
+    \begin{cases}
+        \alpha + \beta = 1\\[.5em]
+        \alpha e^{i\theta} + \beta e^{-i\theta}=\lambda=2\cos\theta
+    \end{cases}
+\]
+A quick calculation yields
+\[
+    \alpha = \frac{e^{i\theta}}{2i\sin\theta},\,\beta = \frac{-e^{-i\theta}}{2i\sin\theta}
+\]
+Now $\lambda = 2\cos\theta$ and
+\[
+    \begin{split}
+        p_n(\lambda)&=\frac{e^{i\theta}}{2i\sin\theta}\cdot e^{i\text{n}\theta} + \frac{-e^{-i\theta}}{2i\sin\theta}\cdot e^{-i\text{n}\theta}\\[.5em]
+        &=\frac{e^{i(\text{n+1})\theta}-e^{-i(\text{n+1})\theta}}{2i\sin\theta}\\[.5em]
+        &=\frac{\sin((n+1)\theta)}{\sin\theta}
+    \end{split}
+\]
+
 \end{document}
