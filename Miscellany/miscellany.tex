@@ -20,17 +20,34 @@
 \end{center}
 \setcounter{page}{1}
 \newpage
-\section{An Eigenvalue Approach to the Fibonacci Sequence}
-\subsection{Introduction}
+\section{An Eigenvalue Approach to Linear Recurrences and Sequences}
+\subsection{General Eigenvalue Method}
+For a Matrix $A \in \mathbb{R}^{2\times 2}$ with two distinct eigenvalues and two corresponding eigenvectors, we know that any vector is a linear combonation of $v_1$ and $v_2$, i.e.
+\begin{align*}
+    \begin{cases}
+        Av_1=\lambda_1 v_1\\
+        Av_2=\lambda_2 v_2
+    \end{cases}\text{, and }
+    v=av_1+bv_2
+\end{align*}
+Applying $A$ repeatedly to $v$ and using the eigenvalue property gives, 
+\begin{align*}
+    Av &=a\lambda_1 v_1+b\lambda_2 v_2, \\
+    A^2v &= a\lambda_1^2 v_1+b\lambda_2^2 v_2, \\
+    &\quad\vdots \\
+    \Rightarrow\, A^nv&=a\lambda_1^n v_1+b\lambda_2^n v_2.
+\end{align*}
+\subsection{Fibonacci Sequence}
+\subsubsection{Introduction}
 The Fibonacci Sequence is a one of the most famous sequence in mathematics. It is defined by the recurrence relation:
 \[
     \begin{cases}
-        \,F_n=F_{n-1}+F_{n-2},\text{ for }n \geq 2\\[.5em]
+        \,F_n=F_{n-1}+F_{n-2},\text{ for }n \ge 2\\[.5em]
         \,F_0=F_1=1
     \end{cases}    
 \]
 Each term is the sum of the two preceeding terms: $1,1,2,3,5,8\dots$
-\subsection{Matrix Representation of the Fibonacci Sequence}
+\subsubsection{Matrix Representation of the Fibonacci Sequence}
 Let 
 \[
     x_0=\begin{bmatrix}
@@ -49,39 +66,23 @@ By repeatedly applying the matrix $A$, we can express each term of the sequence 
     &x_2 = A x_1 = A (A x_0) = A^2 x_0\\
     &\Rightarrow \,\, x_n = A^nx_0
 \end{align*}
-\subsection{General Eigenvalue Method}
-For a Matrix $A \in \mathbb{R}^{2\times 2}$ with two distinct eigenvalues and two corresponding eigenvectors, we know that any vector is a linear combonation of $v_1$ and $v_2$, i.e.
-\begin{align*}
-    \begin{cases}
-        Av_1=\lambda_1 v_1\\
-        Av_2=\lambda_2 v_2
-    \end{cases}\text{, and }
-    v=av_1+bv_2
-\end{align*}
-Applying $A$ repeatedly to $v$ and using the eigenvalue property gives, 
-\begin{align*}
-    Av &=a\lambda_1 v_1+b\lambda_2 v_2, \\
-    A^2v &= a\lambda_1^2 v_1+b\lambda_2^2 v_2, \\
-    &\quad\vdots \\
-    \Rightarrow\, A^nv&=a\lambda_1^n v_1+b\lambda_2^n v_2.
-\end{align*}
-\subsection{Application to the Fibonacci Matrix}
+\subsubsection{Application to the Fibonacci Matrix}
 Let us now consider the Fibonacci matrix
 \[
     A = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}.
 \]
-Its eivenvalues are given by the \textbf{characteristic eqaution}
+Its eivenvalues are given by the \textbf{characteristic polynomial}
 \[
     \det(\lambda I-A)=\begin{vmatrix}
         \lambda-1 & -1\\-1 & \lambda
     \end{vmatrix}=0 \Rightarrow \boxed{\lambda^2 - \lambda - 1 = 0}
 \]
-, and a quick computation yields $\displaystyle\lambda = \varphi \,_\lor -\frac{1}{\varphi}$.\\
-\subsubsection*{Notice that this is exactly the same as the equation obtained from assuming $F_n = \lambda^n$ in the Fibonacci recurrence:}
+, and a quick computation yields $\displaystyle\lambda = \varphi \,_\lor -\frac{1}{\varphi}$.\\[.5em]
+\textbf{Notice that this is exactly the same as the equation obtained from assuming $F_n = \lambda^n$ in the Fibonacci recurrence:}
 \[
     F_n = F_{n-1} + F_{n-2} \Leftrightarrow \lambda^n  = \lambda^{n-1} + \lambda^{n-2} \Rightarrow  \boxed{\lambda^2  = \lambda + 1}
 \]
-\subsection{Deriving the Closed Form}
+\subsubsection{Deriving the Closed Form}
 We can now express $x_n = A^n x_0$ explicitly in terms of $\lambda_1$ and $\lambda_2$. Let us consider
 \[
     F_n=p\cdot\varphi^n + q\cdot(-\frac{1}{\varphi})^n
@@ -106,15 +107,15 @@ Thus,
 \[
     F_n = \frac{1}{\sqrt{5}}\left[\varphi^{n+1} - (-\frac{1}{\varphi})^{n+1}\right] _\#
 \]
-\subsection{Similar Problems}
-\subsubsection{Non-linear Recurrence Equation}
+\subsection{Non-homogeneous Recurrence Equation}
+\subsubsection{Problem}
 Given $a_n=3a_{n-1}+2$  and $a_1 = 2,\,a_2 = 8$. Find the general formula for $a_n$. 
 \subsubsection*{Solution}
 We start by  homogeneous linear equation
 \[
     a_n=3a_{n-1}\Rightarrow x^2=3x
 \]
-Quick calculation gives $\displaystyle x=0 \,_\lor \,3$, then we assume the general formula in eigenvalue approach plus a displacement $r$.
+Quick calculation gives $\displaystyle x=0 \,_\lor \,3$, then we assume the general formula plus a displacement $r$.
 \[
     a_n=p\cdot 3^n + q\cdot 0^n + r
 \]
@@ -131,17 +132,167 @@ By initial condition $a_1 = 2,\, a_2 = 8$
         \displaystyle
         \,p=1\\
         \displaystyle
-        \,q=-1\\
+        \,r=-1\\
     \end{cases}
 \]
 Thus the general formula for $a_n$ is 
 \[
     a_n = 3^n - 1 _\#
 \]
-\subsubsection{Five-Color Planar Graph Coloring}
+\subsection{Five-Color Planar Graph Coloring}
+\subsubsection{Problem}
+Given a polygon with $n$ sides divided into $n$ regions by drawing lines from the centroid to each vertex, find a general formula for the number of proper colorings of the regions using 5 colors, where adjacent regions must have different colors.
 \subsubsection*{Solution}
+\subsubsection*{For Triangle $A_3$ and Square $A_4$}
+\begin{minipage}{.35\textwidth}
+    \begin{minipage}{.5\textwidth}
+        \begin{tikzpicture}[scale=1.5]
+        \coordinate (A) at (90:1);
+        \coordinate (B) at (210:1);
+        \coordinate (C) at (330:1);
+        \coordinate (G) at (0,0);
 
+        \draw[thick] (A) -- (B) -- (C) -- cycle;
+        \draw[thick] (G) -- (A);
+        \draw[thick] (G) -- (B);
+        \draw[thick] (G) -- (C);
 
+        \node[] at (30:.3) {A};
+        \node[]  at (150:.3) {B};
+        \node[] at (270:.3) {C};
+        \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}{.4\textwidth}
+    \[
+        C_1^5\cdot C_1^4 \cdot C_1^3 = 60
+    \]
+    \end{minipage}
+\end{minipage}
+\hfill
+\begin{minipage}{.6\textwidth}
+    \begin{minipage}{.3\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=1.2]
+        \coordinate (A) at (1, 1);
+        \coordinate (B) at (-1, 1);
+        \coordinate (C) at (-1, -1);
+        \coordinate (D) at (1, -1);
+
+        \draw[thick] (A) -- (B) -- (C) -- (D) -- cycle;
+        \draw[thick] (1, 0) -- (-1, 0);
+        \draw[thick] (0, 1) -- (0, -1);
+
+        \node[] at (.5, .5) {A};
+        \node[]  at (-.5, .5) {B};
+        \node[] at (-.5, -.5) {C};
+        \node[] at (.5, -.5) {D};
+        \end{tikzpicture}
+    \end{minipage}
+    \begin{minipage}{.3\textwidth}
+    \begin{align*}
+        &\begin{cases}
+            \text{A}=\text{C}: C_1^5\cdot C_1^4 \cdot C_1^4 = 80\\[.5em]
+            \text{A}\neq\text{C}: C_1^5\cdot C_1^4 \cdot C_1^3 \cdot C_1^3 = 180
+        \end{cases}\\[.5em]
+        &\quad 80 + 180 = 260
+    \end{align*}
+    \end{minipage}
+\end{minipage}
+\subsubsection*{For Pentagon $A_5$}
+\begin{minipage}{.3\textwidth}
+    \begin{tikzpicture}[scale=1.5]
+        \coordinate (A) at (18:1);
+        \coordinate (B) at (90:1);
+        \coordinate (C) at (162:1);
+        \coordinate (D) at (235:1);
+        \coordinate (E) at (307:1);
+        \coordinate (O) at (0:0);
+
+        \draw[thick] (A) -- (B) -- (C) -- (D)-- (E)-- cycle;
+        \draw[thick] (O) -- (A);
+        \draw[thick] (O) -- (B);
+        \draw[thick] (O) -- (C);
+        \draw[thick] (O) -- (D);
+        \draw[thick] (O) -- (E);
+
+        \node[] at (54:.5) {A};
+        \node[] at (126:.5) {B};
+        \node[] at (198:.5) {C};
+        \node[] at (270:.5) {D};
+        \node[] at (342:.5) {E};
+
+    \end{tikzpicture}
+\end{minipage}
+$\Rightarrow\quad$
+\begin{minipage}{.3\textwidth}
+    \begin{tikzpicture}[scale=1.5]
+        \coordinate (A) at (18:.9);
+        \coordinate (B) at (90:.9);
+        \coordinate (C) at (162:.9);
+        \coordinate (D) at (235:.9);
+        \coordinate (E) at (307:.9);
+        \coordinate (O) at (0:0);
+
+        \fill[black] (A) circle(1pt) node[right] {$E$};
+        \fill[black] (B) circle (1pt) node[right] {$A$};
+        \fill[black] (C) circle (1pt) node[right] {$B$};
+        \fill[black] (D) circle (1pt) node[right] {$C$};
+        \fill[black] (E) circle (1pt) node[right] {$D$};
+
+    \end{tikzpicture}
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+\[
+    =\begin{cases}
+        \text{A} = \text{D}: A_3 \times 4\,(E)\\[.5em]\qquad
+        \begin{tikzpicture}[scale=.8]
+            \coordinate (A) at (90:.9);
+            \coordinate (B) at (210:.9);
+            \coordinate (C) at (332:.9);
+            \coordinate (E) at ($(A)+(1.3,0)$);
+
+            \fill[black] (A) circle(2pt) node[left] {$A, D$};
+            \fill[black] (B) circle (2pt) node[left] {$B$};
+            \fill[black] (C) circle (2pt) node[right] {$C$};
+            \fill[black] (E) circle (2pt) node[right] {$E$};
+
+            \draw[thick] (A) -- (B) -- (C) -- cycle;
+            \draw[dashed] (A) -- (E);
+        \end{tikzpicture}\\
+        \text{A} \neq \text{D}:A_4 \times 3\,(E)\\[.5em]\qquad
+        \begin{tikzpicture}[scale=.5]
+            \coordinate (A) at (1, 1);
+            \coordinate (B) at (-1 , 1);
+            \coordinate (C) at (-1, -1);
+            \coordinate (D) at (1, -1);
+            \coordinate (E) at (2, 0);
+
+            \fill[black] (A) circle(2pt) node[above] {$A$};
+            \fill[black] (B) circle (2pt) node[above] {$B$};
+            \fill[black] (C) circle (2pt) node[below] {$C$};
+            \fill[black] (D) circle (2pt) node[below] {$D$};
+            \fill[black] (E) circle (2pt) node[right] {$E$};
+
+            \draw[thick] (A) -- (B) -- (C) -- (D) -- cycle;
+            \draw[dashed] (A) -- (E) -- (D);
+        \end{tikzpicture}\\
+    \end{cases}
+\]
+\end{minipage}
+\subsubsection*{Recurrence Formula}
+Now we've obtained the recurrence formula with initial conditions $a_3 = 60,\, a_4 = 260$
+\[
+    a_{n+2} = 3a_{n+1} + 4a_n
+\]
+Solving the equation yields
+\[
+    a_n = 4^n + 4(-1)^n
+\]
+\subsubsection{General Case}
+Given a polygon with $n$ sides divided into $n$ regions by drawing lines from the centroid to each vertex, the general formula for the number of proper colorings of the regions using $k$ colors is
+\[
+    (k-1)^n+(-1)^n(k-1)
+\]
 
 \section{Zero Forcing Game}
 \subsection{The game itself}
@@ -234,7 +385,7 @@ e.g. For a path graph $G \in P_n$, the adjacency matrix is
     \end{minipage}
 \end{minipage}
 \subsection{Appendix}
-\subsubsection{Eigenvalue of path graph $\boldsymbol{P_n}$ }
+\subsubsection{Eigenvalue of path graph $P_n$ }
 Let $p_n$ denote the characteristic polynomial of path $P_n$
 The recurrence formula is given by
 \begin{align*}
@@ -250,7 +401,7 @@ Solving $r^2 = \lambda r - 1$ gives
 \[
     r = \frac{\lambda \pm \sqrt{\lambda^2-4}}{2}
 \]
-By Gershgorin's Theorem, $|\lambda|\leq 2$\\
+Observe that $|\lambda|\leq 2$\\
 Let 
 \[
     \lambda = 2\cos\theta \Rightarrow r=\cos\theta \pm i\sin\theta = e^{\pm i\theta}
