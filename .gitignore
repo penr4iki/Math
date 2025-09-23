@@ -1,6 +1,9 @@
 # Mac Desktop
 .DS_Store
 
+# My stuff
+Competition Note/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
