@@ -369,7 +369,6 @@ where $D$ is domain of discourse, $p_i$ is a premise, and $q$ is a conclusion\\
         Show a statement is true by first proving that at least one object with the required property exists (existence), and then proving that no more than one such object can exist (uniqueness).\\[.5em]
         \textbf{Example:} Prove that if $\displaystyle r \in \mathbb{Q}^{\,c}$, then $\displaystyle\exists !\, n \in \mathbb{Z} \;|r-n| < \frac{1}{2}$.\\
         \textit{Proof:}\\
-        \textbf{Existence:}\\
         Let 
         \[
             n = \lfloor r + \frac{1}{2} \rfloor
@@ -378,8 +377,7 @@ where $D$ is domain of discourse, $p_i$ is a premise, and $q$ is a conclusion\\
         \[
             n \leq r + \frac{1}{2}< n + 1
         \]
-        Hence \[|r-n| < \tfrac{1}{2}\], so such an integer $n$ exists.\\
-        \textbf{Uniqueness: }\\
+        Hence \[|r-n| < \tfrac{1}{2}\], so such an integer $n$ exists. (Existence)\\
         Suppose
         \[
             \exists m,\, m\neq n,\,|r-m|<\frac{1}{2}
@@ -387,11 +385,161 @@ where $D$ is domain of discourse, $p_i$ is a premise, and $q$ is a conclusion\\
         Consider
         \begin{align*} 
             |n-m| &= |(n-r)+(r-m)|\\
-            &\leq|n-r| + |r-m|\;\text{\small (Triangle Inequality)}\\
+            &\leq|n-r| + |r-m|\\
             &=\frac{1}{2}+\frac{1}{2}=1
         \end{align*}
-        Since $n$ and $m$ are integers, the inequality $|n-m| < 1$ implies $n = m$. Therefore, the integer $n$ is unique.
+        Since $n$ and $m$ are integers, the inequality $|n-m| < 1$ implies $n = m$. Therefore, the integer $n$ is unique. (Uniqueness)
 \end{itemize}
-\section{Basic Structures}
-\subsection{Sets}
+\section{Sets}
+\subsection{Definition and Notation}
+A \textbf{set} is a well-defined collection of distinct objects, called \textbf{elements}.  
+If $a$ is an element of the set $A$, we write $a \in A$. If $a$ is not an element of $A$, we write $a \notin A$.
+Sets are usually denoted by capital letters $A, B, C \dots$
+\begin{itemize}
+    \item Roster Method: List all of its elements within curly braces $\{a, b, c, \dots\}$
+    \item Set-builder Notations: $\{x \mid \text{condition on }x \}$
+\end{itemize}
+\textbf{Example:} The set of all positive integers less than 100: $\{x\in \mathbb{Z}^+ \mid x < 100\}$
+\subsection{Common Sets of Numbers and their Definitions}
+\begin{itemize}
+    \item $\mathbb{N}$: The set of \textbf{natural numbers}. (Sometimes defined to include $0$.)
+    \[
+        \mathbb{N} = \{1, 2, 3, \dots\}
+    \]
+    \item $\mathbb{Z}$: The set of \textbf{integers}. These can be expressed as the difference of two natural numbers.
+    \[
+        \mathbb{Z} = \{a - b \mid a, b \in \mathbb{N}\}
+    \]
+    \item $\mathbb{Q}$: The set of \textbf{rational numbers}. These are ratios of two integers with nonzero denominator.
+    \[
+        \mathbb{Q} = \left\{\frac{a}{b} \;\middle|\; a, b \in \mathbb{Z}, b \neq 0 \right\}
+    \]
+    \item $\mathbb{R}$: The set of \textbf{real numbers}. Formally constructed as the set of equivalence classes of The limits of infinite convergent Cauchy sequences of rational numbers. That is,
+    \[
+        \mathbb{R} = \left\{ \lim_{n \to \infty} a(n) \mid a: \mathbb{N}\to\mathbb{Q},\,\forall \epsilon > 0, \exists N \in \mathbb{N},\, \left|a(n) - a(N)\right| < \epsilon\right\}
+    \]
+    where a sequence $a(n)$ is \emph{Cauchy} if $\forall \, \varepsilon > 0, \exists N \in \mathbb{N}$ such that $\forall m,n > N$, $|a(m) - a(n)| < \varepsilon$.
+    \item $\mathbb{C}$: The set of \textbf{complex numbers}. Defined as ordered pairs of real numbers with special addition and multiplication rules
+    \[
+        \mathbb{C} = \{a + bi \mid a, b \in \mathbb{R}, \; i^2 = -1\}.
+    \]
+\end{itemize}
+\subsection{Subsets, Subsets, Cardinality, and Power Sets}
+\textbf{Subsets:} A set $A$ is a subset of $B$ if every element of $A$ is also in $B$.
+\[
+    A \subseteq B \quad \iff \quad \forall x \ (x \in A \implies x \in B)
+\]
+\textbf{Proper Subsets:} A set $A$ is a proper subset of $B$ if $A\subseteq B$ and $A \neq B$.
+\[
+    A \subset B \quad \iff \quad A \subseteq B \ \text{and} \ A \neq B
+\]
+\textbf{Cardinality:} The number of elements in a set $A$, denoted $|A|$.
+\[
+    | \{1,2,3\} | = 3, \quad | \varnothing | = 0
+\]
+\textbf{Power Set:} The set of all subsets of $A$.
+\[
+    \mathcal{P}(A) = \{ B \mid B \subseteq A \}, \quad |\mathcal{P}(A)| = 2^{|A|}
+\]
+\subsection{Set Operations}
+\begin{itemize}
+    \item Union: $A\cup B = \{x \mid x \in A \text{ or } x \in B\}$ 
+    \item Intersection: $A\cap B = \{x \mid x \in A \text{ and } x \in B\}$ 
+    \item Difference: $A - B \text{ or }A/B = \{x \mid x \in A \text{ and } x \notin B\}$
+    \item Complement: $\bar{A} \text{ or } A^c = \{x \in U \mid x \notin A\}$
+    \item Cartesian Product of $A$ and $B$ is defined by:
+        \[
+            A_1\times A_2 \times \cdots \times A_n  = \{ (a_1, a_2, \dots, a_n) \mid a_i \in A_i \}
+        \]
+        if $A_1 = A_2 = \cdots = A_n$, then $A_1\times A_2 \times \cdots \times A_n = A_{1}^n$
+    \end{itemize}
+\section{Functions}
+\subsection{Definition and Notation}
+A function $f$ from a set $A$ to $B$, written $f: A\to B$ is a mapping defined by
+\[
+    a \in A \to f(a) \in B
+\]
+To check if $f: A\to B$ is a function
+\begin{enumerate}
+    \item Algebraically: if $a_1 = a_2$, then it follows $f(a_1) = f(a_2)$
+    \item Geometrically: Vertical Line Test, i.e., for every vertical line $x = a$, the graph of $f$ interescts the line in at most one point.
+\end{enumerate}
+\subsection{Domain, Codomain, and Range}
+Let $f : A \to B$ be a function.
+\begin{itemize}
+    \item The set $A$ is called the \textbf{domain} of $f$.
+    \item The set $B$ is called the \textbf{codomain} of $f$.
+    \item For each $a \in A$, the element $f(a) \in B$ is called the \textbf{image} of $a$ under $f$.
+    \item The set 
+    \[
+        \text{Range}(f) = \{ f(a) \mid a \in A \}
+    \]
+    is called the \textbf{range} (or image) of $f$.  
+    Note that $\text{Range}(f) \subseteq B$, i.e., the range is always a subset of the codomain.
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.2]
+        \draw[thick] (0,0) ellipse (0.8 and 2) node[below=2.4cm] {Domain $A$};
+        \draw[fill=black] (0, .5) circle (.8pt) node[below] {$a$};
+
+        \draw[thick] (5,0) ellipse (0.9 and 2.2) node[below=2.6cm] {Codomain $B$};
+        \draw[fill=black] (5,1) circle (.8pt) node[below] {\small $f(a)$};
+
+        \begin{scope}
+            \clip (5,0) ellipse (0.9 and 2.2);
+            \fill[opacity=0.2, violet] (5,0) ellipse (0.6 and 1.5);
+        \end{scope}
+        \node[violet] at (5,-1.3) {Range};
+
+        \draw[->, thick] (0, .5) -- (5, 1) node[midway, above] {$f$};
+    \end{tikzpicture}
+\end{figure}
+\subsection{One-to-one and Onto}
+Let $f: A\to B$ be a function. 
+\begin{itemize}
+    \item f is \textbf{onto (surjective)} if for every $b \in B$, there exists at least one $a$ such that $f(a) = b$.
+        \[
+            \forall b\in B, \exists a\in A, f(a) = b
+        \]
+    \item f is \textbf{one-to-one (injective)} if for every $b\in B$, there exists only one $a$ such that $f(a) = b$.
+        \[
+            \forall a_1, a_2 \in A,\; f(a_1) = f(a_2) \Rightarrow a_1 = a_2
+        \]
+    \item f is \textbf{bijective} if f is both \textbf{surjective} and \textbf{injective}. Bijection is also called one-to-one correspondenc.
+\end{itemize}
+\subsection{Sum and Product}
+Let $f_1$, $f_2$ be functions $A\to B$. Then $f_1 + f_2$ and $f_1f_2$ are also functions from $A \to B$.\\ Defined for all $x\in A$
+\begin{align*}
+    &f_1(x) + f_2(x) = (f_1 + f_2)(x)\\
+    &f_1(x) \cdot f_2(x) = (f_1 f_2)(x)
+\end{align*}
+\subsection{Composite and Inverse Function}
+\subsubsection{Composite Function}
+Let $f: A\to B$ and $g: B \to C$. We denote function composition as $g \circ f: A\to C$, where 
+\[
+    (g\circ f)(x) = g(f(x))
+\]
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[scale=1.1]
+        \draw[thick] (0,0) ellipse (0.9 and 2) node[below=2.3cm] {$A$};
+        \draw[thick] (4,0) ellipse (0.9 and 2) node[below=2.3cm] {$B$};
+        \draw[thick] (8,0) ellipse (0.9 and 2) node[below=2.3cm] {$C$};
+
+        \node at (0,0) (a) {$a$};
+        \node at (4,0) (fa) {$f(a)$};
+        \node at (8,0) (gfa) {$g(f(a))$};
+
+        \draw[->, thick] (a) -- (fa) node[midway, above] {$f$};
+        \draw[->, thick] (fa) -- (gfa) node[midway, above] {$g$};
+        \draw[->, thick, bend left=60] (a) to node[midway, above] {$g \circ f$} (gfa);
+    \end{tikzpicture}
+\end{figure}
+\subsubsection{Inverse Function}
+A function $f: A \to B$ has inverse $f^{-1}: B \to A$ such that 
+\[
+    f^{-1}(b) = a \iff f(a) = b
+\]
+if $f$ is \textbf{bijective}.
 \end{document}
