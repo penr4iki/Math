@@ -77,7 +77,7 @@ Its eivenvalues are given by the \textbf{characteristic polynomial}
         \lambda-1 & -1\\-1 & \lambda
     \end{vmatrix}=0 \Rightarrow \boxed{\lambda^2 - \lambda - 1 = 0}
 \]
-, and a quick computation yields $\displaystyle\lambda = \varphi \,_\lor -\frac{1}{\varphi}$.\\[.5em]
+, and a quick computation yields $\displaystyle\lambda = \varphi \text{ or } -\frac{1}{\varphi}$.\\[.5em]
 \textbf{Notice that this is exactly the same as the equation obtained from assuming $F_n = \lambda^n$ in the Fibonacci recurrence:}
 \[
     F_n = F_{n-1} + F_{n-2} \Leftrightarrow \lambda^n  = \lambda^{n-1} + \lambda^{n-2} \Rightarrow  \boxed{\lambda^2  = \lambda + 1}
@@ -105,7 +105,7 @@ By initial contidion $F_0=F_1=1$,
 \]
 Thus, 
 \[
-    F_n = \frac{1}{\sqrt{5}}\left[\varphi^{n+1} - (-\frac{1}{\varphi})^{n+1}\right] _\#
+    F_n = \frac{1}{\sqrt{5}}\left[\varphi^{n+1} - (-\frac{1}{\varphi})^{n+1}\right] \qed
 \]
 \subsection{Non-homogeneous Recurrence Equation}
 \subsubsection{Problem}
@@ -115,7 +115,7 @@ We start by  homogeneous linear equation
 \[
     a_n=3a_{n-1}\Rightarrow x^2=3x
 \]
-Quick calculation gives $\displaystyle x=0 \,_\lor \,3$, then we assume the general formula plus a displacement $r$.
+Quick calculation gives $\displaystyle x=0 \text{ or }3$, then we assume the general formula plus a displacement $r$.
 \[
     a_n=p\cdot 3^n + q\cdot 0^n + r
 \]
@@ -137,7 +137,7 @@ By initial condition $a_1 = 2,\, a_2 = 8$
 \]
 Thus the general formula for $a_n$ is 
 \[
-    a_n = 3^n - 1 _\#
+    a_n = 3^n - 1 \qed
 \]
 \subsection{Five-Color Planar Graph Coloring}
 \subsubsection{Problem}
@@ -294,103 +294,47 @@ Given a polygon with $n$ sides divided into $n$ regions by drawing lines from th
     (k-1)^n+(-1)^n(k-1)
 \]
 
-\section{Zero Forcing Game}
-\subsection{The game itself}
-The set of linear equation 
-$\begin{cases}
-    ax+by=0\\
-    a\neq 0, y= 0
-\end{cases}$ implies that $x=0$. We can generalize these condition to: 
+\section{Eigenvalues of General Tridiagonal Toeplitz Matrices}
+Consider the $n\times n$ \textbf{general tridiagonal Toeplitz matrix}:
 \[
-    \begin{cases}
-        \displaystyle
-        \,a_1x_1+a_2x_2+\dots+a_nx_n\\
-        \displaystyle
-        \,a_1 \neq 0 \, \& \, x_i = 0 \text{ for } i \geq 2
-    \end{cases}
+    T_n =
+    \begin{pmatrix}
+    b & c & 0 & \dots & 0\\
+    a & b & c & \dots & 0\\
+    0 & a & b & \dots & 0\\
+    \vdots & \vdots & \vdots & \ddots & c\\
+    0 & 0 & 0 & a & b
+    \end{pmatrix},
 \]
-\subsection{Trun into Graph}
-\vspace{10pt}
-\begin{minipage}{.3\textwidth}
-    \centering
-    \begin{tikzpicture}
-        % \tikzset{point/.style={circle,draw,fill=white,inner sep=1.5pt}}
-        % \node[point] at (A) {};
-        \coordinate (A) at (-2, .7);
-        \coordinate (B) at (-1, -.5) ;
-        \coordinate (C) at (1, -.5);
-        \coordinate (D) at (2, .7);
-        \coordinate (E) at (0, 2);
-
-        \draw[black] (A)--(E);
-        \draw[black] (B)--(E);
-        \draw[black] (C)--(E);
-        \draw[black] (D)--(E);
-
-        \filldraw[fill=white,draw=black] (A) circle (2pt);
-        \filldraw[fill=white,draw=black] (B) circle (2pt);
-        \filldraw[fill=white,draw=black] (C) circle (2pt);
-        \filldraw[fill=white,draw=black] (D) circle (2pt);
-        \filldraw[fill=white,draw=black] (E) circle (2pt);
-    \end{tikzpicture}
-\end{minipage}
-\hfill
-\begin{minipage}{.6\textwidth}
-    \vspace{0pt}
-    \textbf{Coloring Rules}
-    \begin{enumerate}
-        \item If a black vertex has exactly one white neighbor, then the white neighbor is forced to be black.
-        \item Repeat until no more changes occur.
-    \end{enumerate}
-\end{minipage}
-\subsection{The Adjacency Matrix}
-Let $G = (V,E)$ with $V = \{v_1, v_2, \dots, v_n\}$. The \textbf{Adjacency Matrix} $A=(a_{ij})$ of $G$ is
+where $a, b, c \in \mathbb{R}$.\\
+\subsection{Characteristic Polynomial}
+The characteristic polynomial is defined as
 \[
-    a_{ij} = 
-    \begin{cases}
-        \displaystyle
-        \,1 & \text{if } \{v_i,v_j\}\in E,\\
-        \displaystyle
-        \,0 & \text{otherwise}.
-    \end{cases}
+p_n(\lambda) := \det(\lambda I - T_n),
 \]
-e.g. For a path graph $G \in P_n$, the adjacency matrix is 
-\newline
-\begin{minipage}{\textwidth}
-    \centering
-    \begin{minipage}[][70pt][c]{.3\textwidth}
-        $P_4\,$ 
-        \centering
-        \begin{tikzpicture}[scale=.6]
-            \draw (-3, 0) --(3,0);
-
-            \filldraw[fill=white, draw=black] (-3, 0) circle (2pt);
-            \filldraw[fill=white, draw=black] (-1, 0) circle (2pt);
-            \filldraw[fill=white, draw=black] (1, 0) circle (2pt);
-            \filldraw[fill=white, draw=black] (3, 0) circle (2pt);
-        \end{tikzpicture}
-    \end{minipage}
-    \begin{minipage}[m][70pt][c]{.2\textwidth}
-    \vfill
-    \[
-        \Rightarrow
-        \begin{bmatrix}
-            0 & 1 & 0 & 0\\
-            1 & 0 & 1 & 0\\
-            0 & 1 & 0 & 1\\
-            0 & 0 & 1 & 0\\
-        \end{bmatrix}
-    \]
-    \vfill
-    \end{minipage}
-\end{minipage}
-\subsection{Appendix}
-\subsubsection{Eigenvalue of path graph $P_n$ }
-Let $p_n$ denote the characteristic polynomial of path $P_n$
-The recurrence formula is given by
+It satisfies the recurrence relation
 \begin{align*}
     \begin{cases}
-        p_{n+2} = \lambda p_{n+1} + p_n\\
+        p_{n+2}(\lambda) = (\lambda - b)p_{n+1}(\lambda) - ac \, p_n(\lambda)\\
+        p_0 = 1, \,p_1 = \lambda -b
+    \end{cases}
+\end{align*}
+\subsection{A Special Case}
+Let $a=c=1, b=0$. We have an adjacency matrix corresponding to Path $P_n$
+\[
+    A(P_n)=
+    \begin{pmatrix}
+    0 & 1 & 0 & \dots & 0\\
+    1 & 0 & 1 & \dots & 0\\
+    0 & 1 & 0 & \dots & 0\\
+    \vdots & \vdots & \vdots & \ddots & 1\\
+    0 & 0 & 0 & 1 & 0
+    \end{pmatrix},
+\]
+Let $p_n$ denote the characteristic polynomial of $A_n$. The recurrence formula is given by
+\begin{align*}
+    \begin{cases}
+        p_{n+2} = \lambda p_{n+1} - p_n\\
         p_0 = 1, \,p_1 = \lambda
     \end{cases}
     \overset{\text{Ansatz } r^n\,=\,p_n}{\Rightarrow}
@@ -429,5 +373,77 @@ Now $\lambda = 2\cos\theta$ and
         &=\frac{\sin((n+1)\theta)}{\sin\theta}
     \end{split}
 \]
-
+$p_n(\lambda) = 0 \Leftrightarrow \sin\left((n+1)\theta\right) = 0\text{ and }\sin(\theta) \neq 0$
+\[
+    \begin{split}
+        &(n+1)\theta = k\pi, \;k = 1,2,3...\\
+        &\Rightarrow\theta_k = \frac{k\pi}{n+1}
+    \end{split}
+\]
+Therefore,
+\[
+    \lambda_k = 2\cos\theta_k= 2\cos\left(\frac{k\pi}{n+1}\right)\qed
+\]
+\subsection{General Tridiagonal Toeplitz Matrices}
+\section{Trigonometric Solution to Cubic Equations}
+\subsection{The Cubic Equation and The Depressed Form}
+A general cubic equation is given by:
+\[
+    ax^3 + bx^2 + cx + d = 0, \quad a \neq 0.
+\]
+\textbf{Depressed Cubic Form:}
+\[
+    t^3 + pt + q = 0
+\]
+Any cubic equation may be reduced to the depressed cubic form by a simple change of variable
+\[
+    x = t - \frac{b}{3a}
+\]
+The roots therefore are:
+\[
+    x_i = t_i - \frac{b}{3a}
+\]
+\subsection{Trigonometric Solution}
+Recall the cosine triple-angle formula:
+\[
+    \cos 3\theta = 4\cos^3 \theta - 3\cos \theta
+\]
+This can be rearranged to:
+\[
+    4\cos^3 \theta - 3\cos \theta - \cos3\theta = 0
+\]
+Let $\displaystyle x = 2\sqrt{-\frac{p}{3}}\cos\theta$. We have
+\[
+    4\cos^3\theta - 3\cos\theta - \frac{3q}{2p}\sqrt{-\frac{3}{p}} = 0
+\]
+where
+\[
+    \cos3\theta = \frac{3q}{2p}\sqrt{-\frac{3}{p}}
+\]
+Thus,
+\[
+    \theta = \frac{1}{3}\left(\cos^{-1}\left(\frac{3q}{2p}\sqrt{-\frac{3}{p}}\right) + 2k\pi\right), k = 0,1,2
+\]
+Therefore,
+\[
+    x_k = 2\sqrt{-\frac{p}{3}}\cos\left(\frac{1}{3}\cos^{-1}\left(\frac{3q}{2p}\sqrt{-\frac{3}{p}}\right) + \frac{2k\pi}{3}\right), k = 0,1,2
+\]
+\subsection{Example}
+Find the roots of
+\[
+    x^3 - 3x - 2 = 0
+\]
+Let $\displaystyle x = 2\cos\theta$
+\begin{align*}
+    &x^3 - 3x - 2\\
+    =\;&8\cos^3\theta - 6\cos\theta -2\\
+\end{align*}
+Thus,
+\[
+    \cos(3\theta) = 1\Rightarrow\theta = \frac{k\pi}{3},\;k = 0,1,2
+\]
+Therefore, 
+\[
+    x_k = 2\cos(\frac{k\pi}{3}), \;k = 0,1,2
+\]
 \end{document}
